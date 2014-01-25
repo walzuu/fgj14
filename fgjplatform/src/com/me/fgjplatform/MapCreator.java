@@ -36,7 +36,12 @@ public class MapCreator {
 	}
 	
 	private  void initStaticObjects() {
-		staticObjects.add(new StaticObject(Global.WIDTH/2, 5f, Global.WIDTH, 10f, this.world));
+		staticObjects.add(new Ground(0f + 1000f, -40f - 50f, 2000f, 100f, this.world));
+		
+		staticObjects.add(new Ground(0f + 100f, 10f - 50f, 200f, 100f, this.world));
+		staticObjects.add(new Ground(300f + 200f, 10f - 50f, 400f, 100f, this.world));
+		staticObjects.add(new Tree(400f, 10f + 50f, 20f, 100f, this.world));
+		staticObjects.add(new Water(200f + 50f, 10 - 50f, 100f, 100f, this.world));
 	}
 	
 	public  CreatureObject getPhysicalPlayer(int index) {
