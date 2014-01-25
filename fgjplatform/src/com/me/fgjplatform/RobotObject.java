@@ -8,9 +8,14 @@ public class RobotObject extends CreatureObject {
 		super(x, y, width, height,world);
 	}
 	
+	//@Override
+//	public Sprite loadSprite() {
+//		return super.loadSprite("data/robot.png", "data/robot.png");
+//	}
+	
 	@Override
-	public Sprite loadSprite() {
-		return super.loadSprite("data/robot.png");
+	public void loadTextures() {
+		super.loadTextures("data/robot.png", "data/robot.png");
 	}
 	
 	@Override

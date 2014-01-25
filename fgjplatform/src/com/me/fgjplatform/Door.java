@@ -17,6 +17,11 @@ public class Door extends StaticObject {
 	}
 	
 	@Override
+	public void loadTextures() {
+		super.loadTextures("data/doorway.png", "data/doorway.png");
+	}
+	
+	@Override
 	protected void initPhysicalBody() {
 		bodyDef = new BodyDef();  
         bodyDef.position.set(new Vector2(position_x,position_y));  
