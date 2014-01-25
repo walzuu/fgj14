@@ -45,7 +45,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		camera.position.set(camera.viewportWidth * .5f, camera.viewportHeight * .5f, 0f);  
 		camera.update();  
 
-		player = mapCreator.getPhysicalPlayer();
+		player = mapCreator.getPhysicalPlayer(0);
 		playerBody = player.GetBody();
 
 		batch = new SpriteBatch();
@@ -69,13 +69,13 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 
 	@Override
 	public void render(float delta) {		
-
+		updateMovement();
 		//Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
-
+		
 		for (BaseObject o :mapCreator.getRectDynamicObjects()) {
 			o.draw(batch);
 		}
@@ -85,19 +85,25 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		world.step(1/60f, 6, 2);
 	}
 
+	public void updateMovement() {
+		if(Gdx.input.isKeyPressed(Keys.A)) 
+			player.move(Gdx.graphics.getDeltaTime()*-3000f);
+		if(Gdx.input.isKeyPressed(Keys.D)) 
+			player.move(Gdx.graphics.getDeltaTime()*3000f);
+	}
+	
 	@Override
 	public boolean keyDown(int keycode) {
 		if(keycode == Keys.SPACE){
 			player.jump();
-			System.out.println("jump");
 		}
 
-		if(keycode == Keys.A){
-			player.move(-1000f);
+		if (keycode == Keys.NUM_1) {
+			player = mapCreator.getPhysicalPlayer(0);
 		}
 		
-		if(keycode == Keys.D){
-			player.move(1000f);
+		if (keycode == Keys.NUM_2) {
+			player = mapCreator.getPhysicalPlayer(1);
 		}
 
 		return false;

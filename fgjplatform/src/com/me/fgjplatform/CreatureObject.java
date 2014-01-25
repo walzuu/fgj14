@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class CreatureObject extends BaseObject {
@@ -20,13 +21,13 @@ public class CreatureObject extends BaseObject {
 	private void initPhysicalBody() {
 		bodyDef = new BodyDef();  
         bodyDef.type = BodyType.DynamicBody;
-        bodyDef.position.set(Global.WIDTH / 2, Global.HEIGHT / 2);  
+        bodyDef.position.set(position_x, position_y);  
         body = world.createBody(bodyDef);  
-        CircleShape dynamicCircle = new CircleShape();  
-        dynamicCircle.setRadius(30f);  
+        PolygonShape dynamicBox = new PolygonShape();  
+        dynamicBox.setAsBox(20.0f, 50.0f);  
         FixtureDef fixtureDef = new FixtureDef();  
-        fixtureDef.shape = dynamicCircle;  
-        fixtureDef.density = 0.5f;  
+        fixtureDef.shape = dynamicBox;  
+        fixtureDef.density = 0.9f;  
         fixtureDef.friction = 0.1f;  
         fixtureDef.restitution = 0.3f;
         body.createFixture(fixtureDef);

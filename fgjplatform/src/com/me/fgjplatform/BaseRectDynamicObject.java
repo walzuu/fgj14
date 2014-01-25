@@ -18,11 +18,11 @@ public class BaseRectDynamicObject extends BaseObject {
 	}
 
 	private void initPhysicalBody() {
-		BodyDef bodyDef = new BodyDef();
+		bodyDef = new BodyDef();
 		bodyDef.type = BodyType.DynamicBody;
 		bodyDef.position.set(position_x, position_y);
 		
-		Body body = world.createBody(bodyDef);
+		body = world.createBody(bodyDef);
 		
 		PolygonShape bodyShape = new PolygonShape();
 		bodyShape.setAsBox(width/2, height/2);

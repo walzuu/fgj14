@@ -15,7 +15,7 @@ public class BaseObject {
 	protected float position_x;
 	protected float position_y;
 	
-	protected float width;
+	protected float width;	
 	protected float height;
 	
 	protected BodyDef bodyDef;
@@ -38,8 +38,12 @@ public class BaseObject {
 	}
 	
 	public void draw(SpriteBatch batch) {
-		this.sprite.setPosition(this.position_x - this.sprite.getWidth()/2, this.position_y - this.sprite.getHeight()/2);
-		this.sprite.draw(batch);
+		if (this.body != null) {
+			System.out.print(this.body.getWorldCenter());
+			this.sprite.setPosition(this.body.getWorldCenter().x - this.sprite.getWidth()/2, 
+					this.body.getWorldCenter().y - this.sprite.getHeight()/2);
+			this.sprite.draw(batch);
+		}
 	}
 	
 	// load the sprite:
