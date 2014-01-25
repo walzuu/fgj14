@@ -18,7 +18,6 @@ public class Water extends StaticObject{
 		super(x, y, width, height, world);
 	}
 	
-	
 	@Override
 	public void draw(SpriteBatch batch)
 	{
@@ -42,7 +41,7 @@ public class Water extends StaticObject{
 	public void loadTextures() {
 		// TODO Auto-generated method stub
         a = new Animator();
-		a.create("data/water1.png", 3);
+		a.create("data/water1.png", 4);
 		super.loadTextures("data/water1.png");
 	}
 	

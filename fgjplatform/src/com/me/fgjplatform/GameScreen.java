@@ -126,9 +126,13 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
         camera.update();
 	}
 	
-	public void updateMovement() {
-		if(Gdx.input.isKeyPressed(Keys.A)) 
+	public void updateMovement() 
+	{
+		player.resetMove();
+		if(Gdx.input.isKeyPressed(Keys.A))
+		{
 			player.move(Gdx.graphics.getDeltaTime()*-5000f);
+		}
 		if(Gdx.input.isKeyPressed(Keys.D)) 
 			player.move(Gdx.graphics.getDeltaTime()*5000f);
 	}
@@ -158,6 +162,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 			if (keycode == Keys.NUM_1 && player.getClass() != AlienObject.class) {
 				if (mapCreator.getAlien() != null) {
 					player.move(0f);
+					player.resetMove();
 					player = mapCreator.getAlien();
 					((AlienObject)player).switchForceField(false);
 					for (BaseObject o: mapCreator.getCreatureObjects()) {
@@ -178,6 +183,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 				if (mapCreator.getRobot() != null && player.getClass() != RobotObject.class) {
 					((AlienObject)player).switchForceField(true);
 					player.move(0f);
+					player.resetMove();
 					player = mapCreator.getRobot();
 					for (BaseObject o: mapCreator.getCreatureObjects()) {
 						o.changeTexture(1);
@@ -196,13 +202,15 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 
 		return false;
 	}
-
+	
+	
 	@Override
 	public boolean keyUp(int keycode) {
+		
+		
 		if(keycode == Keys.A){
 			player.move(0f);
 		}
-		
 		if(keycode == Keys.D){
 			player.move(0f);
 		}
