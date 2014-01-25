@@ -25,9 +25,9 @@ public class Water extends StaticObject{
 	}
 	
 	@Override
-	public Sprite loadSprite() {
+	public void loadTextures() {
 		// TODO Auto-generated method stub
-		return super.loadSprite("data/test2.png");
+		super.loadTextures("data/water1.png");
 	}
 	
 }

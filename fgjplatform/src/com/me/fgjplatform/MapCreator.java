@@ -28,7 +28,7 @@ public class MapCreator {
 	
 	private void initDynamicObjects() {
 		// player characters
-		creatureObjects.add(new AlienObject(100f, 10f + 50f, 50f, 100f,this.world));
+		creatureObjects.add(new AlienObject(100f, 10f + 50f, 64f, 100f,this.world));
 		creatureObjects.add(new RobotObject(400f, 10f + 25f, 20f, 50f,this.world));
 		
 		rectDynamicObjects.add(new BaseRectDynamicObject(900f, 160f, 100f, 100f,this.world));
@@ -49,8 +49,8 @@ public class MapCreator {
 		//staticObjects.add(new Ground(-500f + 350f, -90f + 50f, 700f, 100f, this.world));
 		//staticObjects.add(new Ground(300f + 200f, -90 + 50f, 400f, 100f, this.world));
 		
-		staticObjects.add(new Tree(300f + 20f, 10f + 50f, 20f, 100f, this.world));
-		staticObjects.add(new Tree(700f + 20f, 10f + 50f, 20f, 100f, this.world));
+		staticObjects.add(new Tree(200f + 100f, 10f + 100f, 100f, 200f, this.world));
+		staticObjects.add(new Tree(700f + 50f, 10f + 100f, 100f, 200f, this.world));
 		staticObjects.add(new Door(1500f + 25f, 10f + 50f, 50f, 100f, this.world));
 	}
 	

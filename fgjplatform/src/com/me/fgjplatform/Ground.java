@@ -11,9 +11,8 @@ public class Ground extends StaticObject {
 	}
 	
 	@Override
-	public Sprite loadSprite() {
+	public void loadTextures() {
 		// TODO Auto-generated method stub
-		return super.loadSprite("data/ground.png");
+		super.loadTextures("data/gtile0.png");
 	}
-
 }
