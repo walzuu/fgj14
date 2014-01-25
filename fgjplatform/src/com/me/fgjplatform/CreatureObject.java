@@ -24,7 +24,7 @@ public class CreatureObject extends BaseObject {
         bodyDef.position.set(position_x, position_y);  
         body = world.createBody(bodyDef);  
         PolygonShape dynamicBox = new PolygonShape();  
-        dynamicBox.setAsBox(20.0f, 50.0f);  
+        dynamicBox.setAsBox(width/2, height/2);  
         FixtureDef fixtureDef = new FixtureDef();  
         fixtureDef.shape = dynamicBox;  
         fixtureDef.density = 0.9f;  
