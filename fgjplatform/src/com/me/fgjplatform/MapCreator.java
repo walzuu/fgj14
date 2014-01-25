@@ -36,7 +36,7 @@ public class MapCreator {
 	}
 	
 	private  void initStaticObjects() {
-		groundObjects.add(new StaticObject(0f, 0f,this.world));
+		groundObjects.add(new StaticObject(Global.WIDTH/2, 5f, Global.WIDTH, 10f, this.world));
 	}
 	
 	public  CreatureObject getPhysicalPlayer(int index) {

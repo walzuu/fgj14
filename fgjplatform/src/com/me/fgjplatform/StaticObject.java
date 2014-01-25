@@ -7,8 +7,8 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class StaticObject extends BaseObject {
-	public StaticObject(float x, float y,World world) {
-		super(x, y, (Global.WIDTH) * 2f, 20.0f,world);
+	public StaticObject(float x, float y, float width, float height, World world) {
+		super(x, y, width, height, world);
 		initPhysicalBody();
 	}
 	
@@ -17,7 +17,7 @@ public class StaticObject extends BaseObject {
         bodyDef.position.set(new Vector2(position_x,position_y));  
         body = world.createBody(bodyDef);  
         PolygonShape groundBox = new PolygonShape();  
-        groundBox.setAsBox((Global.WIDTH) * 1f, 10.0f);  
+        groundBox.setAsBox(width/2, height/2);  
         body.createFixture(groundBox, 0.0f);
 	}
 }

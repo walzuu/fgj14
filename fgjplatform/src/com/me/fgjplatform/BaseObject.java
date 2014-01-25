@@ -42,6 +42,7 @@ public class BaseObject {
 			System.out.print(this.body.getWorldCenter());
 			this.sprite.setPosition(this.body.getWorldCenter().x - this.sprite.getWidth()/2, 
 					this.body.getWorldCenter().y - this.sprite.getHeight()/2);
+			this.sprite.setRotation(this.body.getTransform().getRotation() / (float) Math.PI * 180);
 			this.sprite.draw(batch);
 		}
 	}
@@ -61,6 +62,7 @@ public class BaseObject {
 		
 		Sprite s = new Sprite(textureRegion);
 		s.setSize(this.width, this.height);
+		s.setOrigin(s.getWidth()/2, s.getHeight()/2);
 		
 		return s;
 	}
