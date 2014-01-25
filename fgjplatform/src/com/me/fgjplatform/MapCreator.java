@@ -66,7 +66,11 @@ public class MapCreator {
 	}
 	
 	private void initStaticSprites() {
-		staticSprites.add(new Sky(0,0,100f,100f));
+		for (int i = 0; i < 45; ++i) {
+			for (int j=0; j<10; ++j) {
+				staticSprites.add(new Sky(-900f+i*100f, 0f+j*100f, 100f, 100f));
+			}
+		}
 	}
 	
 	public  CreatureObject getPhysicalPlayer(int index) {

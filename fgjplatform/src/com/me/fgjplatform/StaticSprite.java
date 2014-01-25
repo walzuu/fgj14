@@ -27,9 +27,11 @@ public class StaticSprite {
 		
 		this.loadTextures();
 		this.sprite = this.loadSprite();
+		this.sprite.setPosition(posX, posY);
 	}
 	
 	public void draw(SpriteBatch batch) {
+		
 		this.sprite.draw(batch);
 	}
 
