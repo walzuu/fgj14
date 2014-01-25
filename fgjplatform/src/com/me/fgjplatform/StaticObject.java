@@ -3,6 +3,7 @@ package com.me.fgjplatform;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -18,6 +19,12 @@ public class StaticObject extends BaseObject {
         body = world.createBody(bodyDef);  
         PolygonShape groundBox = new PolygonShape();  
         groundBox.setAsBox(width/2, height/2);  
-        body.createFixture(groundBox, 0.0f);
+        
+        FixtureDef fixtureDef = new FixtureDef();  
+        fixtureDef.shape = groundBox;  
+        fixtureDef.friction = 0.01f;
+        fixtureDef.density = 0.0f;
+
+        body.createFixture(fixtureDef);
 	}
 }

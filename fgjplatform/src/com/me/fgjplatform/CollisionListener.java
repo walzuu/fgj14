@@ -37,13 +37,19 @@ public class CollisionListener implements ContactListener {
 			return;
 		}
 
-		if (contact.getFixtureB() != null && contact.getFixtureB().getUserData() == "feet") {
-			if (bodyB.getUserData() == "alien") {
-				mapCreator.getAlien().resetJump();
+		if (contact.getFixtureB() != null) {
+			if (contact.getFixtureB().getUserData() == "feet") {
+				if (bodyB.getUserData() == "alien") {
+					mapCreator.getAlien().resetJump();
+				}
+				
+				if (bodyB.getUserData() == "robot") {
+					mapCreator.getRobot().resetJump();
+				}
 			}
 			
-			if (bodyB.getUserData() == "robot") {
-				mapCreator.getRobot().resetJump();
+			if (contact.getFixtureB().getUserData() == "forcefield") {
+				System.out.println("kontakti a "+contact.getFixtureA().getBody().getUserData());
 			}
 		}
 	}

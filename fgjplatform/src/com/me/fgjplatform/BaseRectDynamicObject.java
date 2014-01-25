@@ -16,6 +16,11 @@ public class BaseRectDynamicObject extends BaseObject {
 		initPhysicalBody();
 	}
 
+	@Override
+	public void loadTextures() {
+		this.loadTextures("data/crate.png");
+	}
+	
 	private void initPhysicalBody() {
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyType.DynamicBody;

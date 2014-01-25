@@ -15,5 +15,11 @@ public class Tree extends StaticObject {
 		// TODO Auto-generated method stub
 		super.loadTextures("data/tree.png", "data/tree2.png");
 	}
+	
+	@Override
+	protected void initPhysicalBody() {
+		super.initPhysicalBody();
+		body.setUserData("tree");
+	}
 
 }
