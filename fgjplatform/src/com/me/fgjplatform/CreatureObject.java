@@ -22,7 +22,7 @@ public class CreatureObject extends BaseObject {
 		canJump = true;
 		moving = false;
 		anim = new Animator();
-		anim.create("data/alien.png", 2);
+		anim.create("data/Alien.png", 2);
 	}
 	
 

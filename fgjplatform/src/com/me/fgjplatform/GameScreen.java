@@ -126,9 +126,13 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
         camera.update();
 	}
 	
-	public void updateMovement() {
-		if(Gdx.input.isKeyPressed(Keys.A)) 
+	public void updateMovement() 
+	{
+		player.resetMove();
+		if(Gdx.input.isKeyPressed(Keys.A))
+		{
 			player.move(Gdx.graphics.getDeltaTime()*-5000f);
+		}
 		if(Gdx.input.isKeyPressed(Keys.D)) 
 			player.move(Gdx.graphics.getDeltaTime()*5000f);
 	}
@@ -202,11 +206,6 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		
 		if(keycode == Keys.A){
 			player.move(0f);
-		}
-		else
-		{
-			//this stops the move animation, but D may start it again
-			player.resetMove();
 		}
 		if(keycode == Keys.D){
 			player.move(0f);
