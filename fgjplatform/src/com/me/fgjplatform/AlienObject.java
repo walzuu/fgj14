@@ -9,8 +9,8 @@ public class AlienObject extends CreatureObject {
 	}
 	
 	@Override
-	public Sprite loadSprite() {
-		return super.loadSprite("data/alien.png");
+	public void loadTextures() {
+		super.loadTextures("data/Alien.png", "data/Human.png");
 	}
 	
 	@Override
