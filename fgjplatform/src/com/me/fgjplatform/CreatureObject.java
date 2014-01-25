@@ -58,7 +58,7 @@ public class CreatureObject extends BaseObject {
         dynamicBox.setAsBox(width/2, height/2);  
         FixtureDef fixtureDef = new FixtureDef();  
         fixtureDef.shape = dynamicBox;  
-        fixtureDef.density = 0.9f;
+        fixtureDef.density = 0.1f;
         fixtureDef.friction = 0.1f;
         fixtureDef.restitution = 0.3f;
         body.createFixture(fixtureDef);
