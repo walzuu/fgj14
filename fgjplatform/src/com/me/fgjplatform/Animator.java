@@ -25,7 +25,7 @@ public class Animator
     public void create(String aName, int frames) {
             walkSheet = new Texture(Gdx.files.internal(aName));     // #9
             TextureRegion[][] tmp = TextureRegion.split(walkSheet, walkSheet.getWidth() / 
-frames, walkSheet.getHeight() / FRAME_ROWS);                                // #10
+frames, walkSheet.getHeight() / FRAME_ROWS);
             walkFrames = new TextureRegion[frames * FRAME_ROWS];
             int index = 0;
             for (int i = 0; i < FRAME_ROWS; i++) {
