@@ -27,7 +27,7 @@ public class Ground extends StaticObject {
 		int textureNumber = 0;
 		if (this.isTopGround)
 			textureNumber = (int)(Math.random() * ((2) + 1)) + 1;
-		System.out.println("texture number "+textureNumber);
+
 		this.loadTextures("data/gtile"+textureNumber+".png");
 		this.textures.get(0).setWrap(TextureWrap.Repeat, TextureWrap.Repeat);
 		
