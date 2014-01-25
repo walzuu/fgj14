@@ -137,6 +137,10 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 
 		if (keycode == Keys.NUM_1) {
 			player = mapCreator.getPhysicalPlayer(0);
+			for (BaseObject o: mapCreator.getCreatureObjects()) {
+				o.changeTexture(0);
+			}
+			
 			for (BaseObject o: mapCreator.getRectDynamicObjects()) {
 				o.changeTexture(0);
 			}
@@ -148,6 +152,10 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		
 		if (keycode == Keys.NUM_2) {
 			player = mapCreator.getPhysicalPlayer(1);
+			for (BaseObject o: mapCreator.getCreatureObjects()) {
+				o.changeTexture(1);
+			}
+			
 			for (BaseObject o: mapCreator.getRectDynamicObjects()) {
 				o.changeTexture(1);
 			}
