@@ -72,4 +72,12 @@ public class MapCreator {
 	public ArrayList<CreatureObject> getCreatureObjects() {
 		return creatureObjects;
 	}
+	
+	public CreatureObject getAlien() {
+		return creatureObjects.get(0);
+	}
+	
+	public CreatureObject getRobot() {
+		return creatureObjects.get(1);
+	}
 }
