@@ -12,11 +12,11 @@ public class StaticObject extends BaseObject {
 	}
 	
 	private void initPhysicalBody() {
-		BodyDef groundBodyDef = new BodyDef();  
-        groundBodyDef.position.set(new Vector2(Global.PtoM(position_x), Global.PtoM(position_y)));  
-        Body groundBody = world.createBody(groundBodyDef);  
+		bodyDef = new BodyDef();  
+        bodyDef.position.set(new Vector2(Global.PtoM(position_x), Global.PtoM(position_y)));  
+        body = world.createBody(bodyDef);  
         PolygonShape groundBox = new PolygonShape();  
         groundBox.setAsBox((camera.viewportWidth) * 1f, 10.0f);  
-        groundBody.createFixture(groundBox, 0.0f);
+        body.createFixture(groundBox, 0.0f);
 	}
 }
