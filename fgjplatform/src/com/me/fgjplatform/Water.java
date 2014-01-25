@@ -45,7 +45,7 @@ public class Water extends StaticObject{
 		// TODO Auto-generated method stub
         a = new Animator();
 		a.create("data/water1.png", 4);
-		//super.loadTextures("data/water1.png");
+		super.loadTextures("data/water1.png");
 	}
 	
 }
