@@ -10,7 +10,7 @@ public class BaseRectDynamicObject extends BaseObject {
 	protected float height;
 
 	public BaseRectDynamicObject(float x, float y, float width, float height) {
-		super(x, y);
+		super(x, y, width, height);
 		this.width = width;
 		this.height = height;
 		initPhysicalBody();

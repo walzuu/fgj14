@@ -7,7 +7,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 public class StaticObject extends BaseObject {
 	public StaticObject(float x, float y) {
-		super(x, y);
+		super(x, y, (Global.WIDTH) * 2f, 20.0f);
 		initPhysicalBody();
 	}
 	

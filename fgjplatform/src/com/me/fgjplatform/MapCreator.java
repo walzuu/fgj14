@@ -22,7 +22,7 @@ public class MapCreator {
 	}
 	
 	private static void initDynamicObjects() {
-		creatureObjects.add(new CreatureObject(0f, 300f));
+		creatureObjects.add(new CreatureObject(0f, 300f, 10f, 10f));
 		
 		rectDynamicObjects.add(new BaseRectDynamicObject(300f, 110f, 100f, 200f));
 	}
