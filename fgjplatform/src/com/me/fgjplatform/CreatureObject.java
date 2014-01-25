@@ -17,14 +17,15 @@ public class CreatureObject extends BaseObject {
 	private Animator anim;
 	
 	public CreatureObject(float x, float y, float width, float height,World world,
-			String walkfile) {
+			String walkfile, int columns, int rows) 
+	{
 		super(x, y, width, height,world);
 		initPhysicalBody();
 		canJump = true;
 		moving = false;
 		facingLeft = false;
 		anim = new Animator();
-		anim.create(walkfile, 1);
+		anim.create(walkfile, columns, rows);
 	}
 	
 

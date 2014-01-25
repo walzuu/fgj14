@@ -41,7 +41,7 @@ public class Water extends StaticObject{
 	public void loadTextures() {
 		// TODO Auto-generated method stub
         a = new Animator();
-		a.create("data/water1.png", 4);
+		a.create("data/water1.png", 4, 1);
 		super.loadTextures("data/water1.png", "data/corrosive_anim.png");
 	}
 	
@@ -51,10 +51,10 @@ public class Water extends StaticObject{
 			a = new Animator();
 			switch (textureId) {
 			case 0:
-				a.create("data/water1.png", 4);
+				a.create("data/water1.png", 4, 1);
 				break;
 			case 1:
-				a.create("data/corrosive_anim.png", 4);
+				a.create("data/corrosive_anim.png", 4, 1);
 				break;
 			}
 		}

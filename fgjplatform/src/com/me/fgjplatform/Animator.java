@@ -23,7 +23,8 @@ public class Animator
     
     float stateTime;                                        // #8
     
-    public void create(String aName, int frames) {
+    public void create(String aName, int columns, int frames) 
+    {
             walkSheet = new Texture(Gdx.files.internal(aName));     // #9
             TextureRegion[][] tmp = TextureRegion.split(walkSheet, walkSheet.getWidth() / 
 frames, walkSheet.getHeight() / FRAME_ROWS);

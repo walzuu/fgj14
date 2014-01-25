@@ -11,12 +11,14 @@ import com.badlogic.gdx.physics.box2d.World;
 public class AlienObject extends CreatureObject {
 	private Fixture forceFieldFixture;
 	
-	public AlienObject(float x, float y, float width, float height, World world) {
-		super(x, y, width, height,world, "data/Human.png");
+	public AlienObject(float x, float y, float width, float height, World world) 
+	{
+		super(x, y, width, height,world, "data/Human.png", 4, 3);
 	}
 	
 	@Override
-	public void loadTextures() {
+	public void loadTextures() 
+	{
 		super.loadTextures("data/Human.png", "data/Alien.png");
 	}
 	
