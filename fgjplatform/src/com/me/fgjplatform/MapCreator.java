@@ -35,8 +35,8 @@ public class MapCreator {
 		creatureObjects.add(new AlienObject(100f, 10f + 50f, 64f, 100f,this.world));
 		creatureObjects.add(new RobotObject(400f, 10f + 25f, 20f, 50f,this.world));
 		
-		rectDynamicObjects.add(new BaseRectDynamicObject(900f, 160f, 100f, 100f,this.world));
-		rectDynamicObjects.add(new BaseRectDynamicObject(900f, 60f, 100f, 100f,this.world));
+		rectDynamicObjects.add(new BaseRectDynamicObject(900f, 160f, 98f, 100f,this.world));
+		rectDynamicObjects.add(new BaseRectDynamicObject(900f, 60f, 98f, 100f,this.world));
 	}
 	
 	private  void initStaticObjects() {
@@ -44,9 +44,9 @@ public class MapCreator {
 		staticObjects.add(new Ground(-1000f + 250f, -90f + 500f, 500f, 1000f, this.world));
 		
 		staticObjects.add(new Ground(-500f + 800f, -90f + 50f, 1600f, 100f, this.world));
-		staticObjects.add(new Water(1100f + 50f, -90f + 50f, 100f, 100f, this.world));
+		staticObjects.add(new Water(1100f + 50f, -94f + 50f, 100f, 92f, this.world));
 		staticObjects.add(new Ground(1200f + 50f, -90f + 50f, 100f, 100f, this.world));
-		staticObjects.add(new Water(1300f + 50f, -90f + 50f, 100f, 100f, this.world));
+		staticObjects.add(new Water(1300f + 50f, -94f + 50f, 100f, 92f, this.world));
 		staticObjects.add(new Ground(1400f + 250f, -90f + 50f, 500f, 100f, this.world));
 		staticObjects.add(new Ground(1900f + 250f, -90f + 500f, 500f, 1000f, this.world));
 		
