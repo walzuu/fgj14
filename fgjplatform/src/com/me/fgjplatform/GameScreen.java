@@ -163,11 +163,12 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 				player.jump();
 			}
 	
-			if (keycode == Keys.NUM_1) {
+			if (keycode == Keys.NUM_1 && player.getClass() != AlienObject.class) {
 				if (mapCreator.getAlien() != null) {
 					player.move(0f);
 					player.resetMove();
 					player = mapCreator.getAlien();
+					((AlienObject)player).switchForceField(false);
 					for (BaseObject o: mapCreator.getCreatureObjects()) {
 						o.changeTexture(0);
 					}
@@ -183,7 +184,8 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 			}
 			
 			if (keycode == Keys.NUM_2) {
-				if (mapCreator.getRobot() != null) {
+				if (mapCreator.getRobot() != null && player.getClass() != RobotObject.class) {
+					((AlienObject)player).switchForceField(true);
 					player.move(0f);
 					player.resetMove();
 					player = mapCreator.getRobot();

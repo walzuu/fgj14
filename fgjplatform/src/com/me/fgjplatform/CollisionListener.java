@@ -27,31 +27,37 @@ public class CollisionListener implements ContactListener {
 		Body bodyB = contact.getFixtureB().getBody();
 		Object userDataA = bodyA.getUserData();
 		Object userDataB = bodyB.getUserData();
-		if (userDataA == "door") {
+		if (userDataA == "door" && 
+				(String)contact.getFixtureB().getUserData() != "forcefield") {
 			handleDoorCollision(bodyB);
 			return;
 		}
 		
-		if (userDataA == "water") {
+		if (userDataA == "water" && 
+				(String)contact.getFixtureB().getUserData() != "forcefield") {
 			handleWaterCollision(bodyB);
 			return;
 		}
 
-		if (contact.getFixtureB() != null) {
-			if (contact.getFixtureB().getUserData() == "feet") {
-				if (bodyB.getUserData() == "alien") {
-					mapCreator.getAlien().resetJump();
-				}
-				
-				if (bodyB.getUserData() == "robot") {
-					mapCreator.getRobot().resetJump();
-				}
+		if (userDataA == "tree" && 
+				(String)contact.getFixtureB().getUserData() == "forcefield") {
+			handleTreeRemoval(bodyA);
+		}
+		
+		if (contact.getFixtureB().getUserData() == "feet") {
+			if (bodyB.getUserData() == "alien") {
+				mapCreator.getAlien().resetJump();
 			}
 			
-			if (contact.getFixtureB().getUserData() == "forcefield") {
-				System.out.println("kontakti a "+contact.getFixtureA().getBody().getUserData());
+			if (bodyB.getUserData() == "robot") {
+				mapCreator.getRobot().resetJump();
 			}
 		}
+	}
+	
+	private void handleTreeRemoval(Body bodyA) {
+		mapCreator.removeStaticObject(bodyA);
+		bodyA.setUserData("dead");
 	}
 	
 	private void handleDoorCollision(Body bodyB) {
