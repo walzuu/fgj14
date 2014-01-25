@@ -23,7 +23,7 @@ public class Water extends StaticObject{
 	public void draw(SpriteBatch batch)
 	{
 		a.render(batch,(int)(this.body.getWorldCenter().x), 
-				(int)(this.body.getWorldCenter().y));
+				(int)(this.body.getWorldCenter().y), width, height);
 	}
 	
 	@Override
