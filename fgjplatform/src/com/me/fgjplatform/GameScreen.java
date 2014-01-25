@@ -59,6 +59,10 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		sprite.setSize(0.9f, 0.9f * sprite.getHeight() / sprite.getWidth());
 		sprite.setOrigin(sprite.getWidth()/2, sprite.getHeight()/2);
 		sprite.setPosition(-sprite.getWidth()/2, -sprite.getHeight()/2);
+		
+		// CollisionListener calls proper functions when user collides with
+		// a special object
+		world.setContactListener(new CollisionListener(world, null));
 	}
 
 	@Override
@@ -91,7 +95,6 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		batch.end();
 		debugRenderer.render(world, camera.combined);
 		world.step(1/60f, 6, 2);
-		world.setContactListener(new CollisionListener());
 	}
 
 	public void updateCamera(){

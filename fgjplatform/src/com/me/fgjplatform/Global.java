@@ -9,4 +9,6 @@ public class Global {
 	
 	public static final float WTB = 0.03125f;
 	public static final float BTW = 32f;
+	
+	public enum GameEnding { none, win, lose };
 }

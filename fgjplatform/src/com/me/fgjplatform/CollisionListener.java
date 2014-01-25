@@ -4,11 +4,15 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.badlogic.gdx.physics.box2d.World;
 
 public class CollisionListener implements ContactListener {
 
-	public CollisionListener() {
-		
+	private World world;
+	private GameState gameState;
+	
+	public CollisionListener(World world, GameState gameState) {
+		this.world = world;
 	}
 	
 	@Override
@@ -16,10 +20,9 @@ public class CollisionListener implements ContactListener {
 		
 		Object userDataA = contact.getFixtureA().getBody().getUserData();
 		Object userDataB = contact.getFixtureB().getBody().getUserData();
-		if (userDataA != null && userDataB != null) {
-			if (userDataA == "door") {
-				System.out.println("oveen törmätty");
-			}
+		if ( (userDataA == "door" && userDataB == "alien") ||
+			(userDataA == "door" && userDataB == "robot")) {
+			
 		}
 	}
 
