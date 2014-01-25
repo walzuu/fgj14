@@ -25,4 +25,11 @@ public class MapCreator {
 	private static void initStaticObjects() {
 		groundObjects.add(new StaticObject(0f, 0f));
 	}
+	
+	public static CreatureObject getPhysicalPlayer() {
+		if (creatureObjects.size() > 0) {
+			return creatureObjects.get(0);
+		}
+		return null;
+	}
 }
