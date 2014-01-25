@@ -42,8 +42,10 @@ public class BaseObject {
 		
 	}
 	
-	public void draw(SpriteBatch batch) {
-		if (this.body != null) {
+	public void draw(SpriteBatch batch)
+	{
+		if (this.body != null)
+		{
 			this.sprite.setPosition(this.body.getWorldCenter().x - this.sprite.getWidth()/2, 
 					this.body.getWorldCenter().y - this.sprite.getHeight()/2);
 			this.sprite.setRotation(this.body.getTransform().getRotation() / (float) Math.PI * 180);
