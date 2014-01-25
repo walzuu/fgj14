@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
@@ -33,25 +34,29 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 	static final float BOX_STEP=1/60f;  
 	static final int BOX_VELOCITY_ITERATIONS=6;  
 	static final int BOX_POSITION_ITERATIONS=2; 
+	private Vector3 targetPos;
 
 	private MapCreator mapCreator;
 
 	public GameScreen(Game game) {
 		super(game);
-
 		Gdx.input.setInputProcessor(this);
 
 		world = new World(new Vector2(0, -119.81f), true);
 		mapCreator = new MapCreator(world);
 		camera = new OrthographicCamera();  
 		camera.viewportHeight = Global.HEIGHT;  
-		camera.viewportWidth = Global.WIDTH;  
-		camera.position.set(camera.viewportWidth * .5f, camera.viewportHeight * .5f-125, 0);  
-		camera.zoom = 5f;
-		camera.update();  
-
-		player = mapCreator.getPhysicalPlayer(0);
+		camera.viewportWidth = Global.WIDTH;    
+		camera.zoom = 1f;
+		
+		
+		player = mapCreator.getAlien();
 		playerBody = player.GetBody();
+		camera.position.set(playerBody.getPosition().x, camera.viewportHeight * .5f-125, 0);
+		camera.update();
+		targetPos = new Vector3();
+		targetPos.y = camera.position.y;
+		targetPos.z = camera.position.z;
 
 		batch = new SpriteBatch();
 		
@@ -93,10 +98,8 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 			o.draw(batch);
 		}
 		
-		
-		
-		updateCamera();
 		batch.end();
+		updateCamera(delta);
 		debugRenderer.render(world, camera.combined);
 		world.step(1/60f, 6, 2);
 		sweepDeadBodies();
@@ -117,11 +120,13 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		}
 	}
 	
-	public void updateCamera(){
+	private void updateCamera(float delta){
 		playerBody = player.GetBody();
-        camera.position.set(playerBody.getPosition().x, camera.position.y, 0);
+		targetPos.x = playerBody.getPosition().x;
+		camera.position.lerp(targetPos, delta);
         camera.update();
 	}
+	
 	
 	public void updateMovement() 
 	{
@@ -191,7 +196,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 					player.move(0f);
 					player.resetMove();
 					player = mapCreator.getRobot();
-					
+
 					for (StaticSprite ss: mapCreator.getStaticSprites()) {
 						ss.changeTexture(1);
 					}
@@ -221,6 +226,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		
 		if(keycode == Keys.A){
 			player.move(0f);
+			
 		}
 		if(keycode == Keys.D){
 			player.move(0f);
