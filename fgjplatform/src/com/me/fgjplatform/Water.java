@@ -25,7 +25,6 @@ public class Water extends StaticObject{
 				(int)(this.body.getWorldCenter().y - this.sprite.getHeight()/2));
 		//a.render(batch,(int)(this.body.getWorldCenter().x), 
 		//		(int)(this.body.getWorldCenter().y));
-	
 	}
 	
 	@Override
