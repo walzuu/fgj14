@@ -86,8 +86,9 @@ public class BaseObject {
 	}
 	
 	public void changeTexture(int textureId) {
-		if (this.textures.size() > 0 && textureId > 0 && textureId < this.textures.size()) {
+		if (this.textures.size() > 0 && textureId >= 0 && textureId < this.textures.size()) {
 			this.sprite.setTexture(textures.get(textureId));
 		}
+		
 	}
 }
