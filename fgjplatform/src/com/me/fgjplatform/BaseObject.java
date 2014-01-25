@@ -21,22 +21,19 @@ public class BaseObject {
 	protected BodyDef bodyDef;
 	protected Body body;
 	protected World world;
-	protected OrthographicCamera camera;
 	
 	protected Sprite sprite;
 
 	// Constructor
-	public BaseObject(float x, float y, float width, float height) {
+	public BaseObject(float x, float y, float width, float height,World world) {
 		this.position_x = x;
 		this.position_y = y;
 		
 		this.width = width;
 		this.height = height;
 		
-		this.world = FgjPlatform.GetWorld();
-		this.camera = FgjPlatform.GetCamera();
-		
-		
+		this.world = world;		
+
 		this.sprite = loadSprite();
 	}
 	

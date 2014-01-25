@@ -5,45 +5,49 @@ import java.util.ArrayList;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class MapCreator {
-	private static ArrayList<CreatureObject> creatureObjects;
-	private static ArrayList<BaseRectDynamicObject> rectDynamicObjects;
+	private ArrayList<CreatureObject> creatureObjects;
+	private ArrayList<BaseRectDynamicObject> rectDynamicObjects;
 
-	private static ArrayList<StaticObject> groundObjects;
-	private static World world;
+	private  ArrayList<StaticObject> groundObjects;
+	private World world;
 	
-	public static void CreateWorld() {
+	public MapCreator(World world){
+		this.world = world;
+		createWorld();
+	}
+	
+	private void createWorld() {
 		creatureObjects = new ArrayList<CreatureObject>();
 		rectDynamicObjects = new ArrayList<BaseRectDynamicObject>();
 		groundObjects = new ArrayList<StaticObject>();
 		
-		world = FgjPlatform.GetWorld();
 		initStaticObjects();
 		initDynamicObjects();
 		
 	}
 	
-	private static void initDynamicObjects() {
-		creatureObjects.add(new CreatureObject(0f, 300f, 10f, 10f));
+	private void initDynamicObjects() {
+		creatureObjects.add(new CreatureObject(0f, 300f, 10f, 10f,this.world));
 		
-		rectDynamicObjects.add(new BaseRectDynamicObject(300f, 110f, 100f, 200f));
+		rectDynamicObjects.add(new BaseRectDynamicObject(300f, 110f, 100f, 200f,this.world));
 	}
 	
-	private static void initStaticObjects() {
-		groundObjects.add(new StaticObject(0f, 0f));
+	private  void initStaticObjects() {
+		groundObjects.add(new StaticObject(0f, 0f,this.world));
 	}
 	
-	public static CreatureObject getPhysicalPlayer() {
+	public  CreatureObject getPhysicalPlayer() {
 		if (creatureObjects.size() > 0) {
 			return creatureObjects.get(0);
 		}
 		return null;
 	}
 	
-	public static ArrayList<BaseRectDynamicObject> getRectDynamicObjects() {
+	public ArrayList<BaseRectDynamicObject> getRectDynamicObjects() {
 		return rectDynamicObjects;
 	}
 
-	public static ArrayList<StaticObject> getGroundObjects() {
+	public  ArrayList<StaticObject> getGroundObjects() {
 		return groundObjects;
 	}
 }
