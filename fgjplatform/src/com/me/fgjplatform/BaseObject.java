@@ -1,5 +1,7 @@
 package com.me.fgjplatform;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -23,6 +25,7 @@ public class BaseObject {
 	protected World world;
 	
 	protected Sprite sprite;
+	protected ArrayList<Texture> textures;
 
 	// Constructor
 	public BaseObject(float x, float y, float width, float height,World world) {
@@ -35,6 +38,7 @@ public class BaseObject {
 		this.world = world;		
 
 		this.sprite = loadSprite();
+		this.loadTextures();
 	}
 	
 	public void draw(SpriteBatch batch) {
@@ -66,4 +70,24 @@ public class BaseObject {
 		return s;
 	}
 	
+	public void loadTextures() {
+		this.loadTextures("data/crate.png");
+	}
+	
+	public void loadTextures(String... paths) {
+		this.textures = new ArrayList<Texture>();
+		
+		for (int i=0; i<paths.length; i++) {
+			Texture texture = new Texture(Gdx.files.internal(paths[i]));
+			texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+			
+			textures.add(texture);
+		}
+	}
+	
+	public void changeTexture(int textureId) {
+		if (this.textures.size() > 0 && textureId > 0 && textureId < this.textures.size()) {
+			this.sprite.setTexture(textures.get(textureId));
+		}
+	}
 }

@@ -23,6 +23,7 @@ public class CreatureObject extends BaseObject {
         bodyDef.type = BodyType.DynamicBody;
         bodyDef.position.set(position_x, position_y);  
         body = world.createBody(bodyDef);  
+        body.setFixedRotation(true);
         PolygonShape dynamicBox = new PolygonShape();  
         dynamicBox.setAsBox(width/2, height/2);  
         FixtureDef fixtureDef = new FixtureDef();  
