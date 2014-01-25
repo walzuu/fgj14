@@ -1,6 +1,7 @@
 package com.me.fgjplatform;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Fixture;
@@ -9,8 +10,19 @@ import com.badlogic.gdx.physics.box2d.World;
 
 public class Water extends StaticObject{
 
+	
+	private Animator a;
+	
+	
 	public Water(float x, float y, float width, float height, World world) {
 		super(x, y, width, height, world);
+	}
+	
+	@Override
+	public void draw(SpriteBatch batch)
+	{
+		a.render(batch,(int)(this.body.getWorldCenter().x - this.sprite.getWidth()/2), 
+				(int)(this.body.getWorldCenter().y - this.sprite.getHeight()/2));
 	}
 	
 	@Override
@@ -27,6 +39,8 @@ public class Water extends StaticObject{
 	@Override
 	public void loadTextures() {
 		// TODO Auto-generated method stub
+        a = new Animator();
+		a.create("data/water1.png", 3);
 		super.loadTextures("data/water1.png");
 	}
 	
