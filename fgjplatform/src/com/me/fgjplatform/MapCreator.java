@@ -73,11 +73,29 @@ public class MapCreator {
 		return creatureObjects;
 	}
 	
-	public CreatureObject getAlien() {
-		return creatureObjects.get(0);
+	public AlienObject getAlien() {
+		for (BaseObject o: creatureObjects) {
+			if (o.getClass() == AlienObject.class) {
+				return (AlienObject)o;
+			}
+		}
+		return null;
 	}
 	
-	public CreatureObject getRobot() {
-		return creatureObjects.get(1);
+	public RobotObject getRobot() {
+		for (BaseObject o: creatureObjects) {
+			if (o.getClass() == RobotObject.class) {
+				return (RobotObject)o;
+			}
+		}
+		return null;
+	}
+	
+	public void removeAlien() {
+		creatureObjects.remove(getAlien());
+	}
+	
+	public void removeRobot() {
+		creatureObjects.remove(getRobot());
 	}
 }

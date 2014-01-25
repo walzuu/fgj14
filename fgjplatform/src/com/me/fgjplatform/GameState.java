@@ -7,18 +7,27 @@ import com.badlogic.gdx.physics.box2d.World;
 public class GameState {
 	private World world;
 	private Global.GameEnding gameEnding;
-	private ArrayList<CreatureObject> objectsInGoal;
+	private boolean isAlienInGoal;
+	private boolean isRobotInGoal;
 	
 	public GameState(World world) {
 		this.world = world;
 		this.gameEnding = Global.GameEnding.none;
-		this.objectsInGoal = new ArrayList<CreatureObject>();
+		this.isAlienInGoal = false;
+		this.isRobotInGoal = false;
 	}
 	
-	public void sendToGoal(CreatureObject playerCharacter) {
-		objectsInGoal.add(playerCharacter);
-		if (objectsInGoal.size() == 2) {
-			gameEnding = Global.GameEnding.win;
+	public void sendToGoal(String name) {
+		if (name == "alien") {
+			isAlienInGoal = true;
+		}
+		
+		if (name == "robot") {
+			isRobotInGoal = true;
+		}
+		
+		if (isAlienInGoal && isRobotInGoal) {
+			setGameEnding(Global.GameEnding.win);
 		}
 	}
 	
