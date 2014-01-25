@@ -2,6 +2,7 @@ package com.me.fgjplatform;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
@@ -10,7 +11,8 @@ public class MapCreator {
 	private ArrayList<CreatureObject> creatureObjects;
 	private ArrayList<BaseRectDynamicObject> rectDynamicObjects;
 
-	private  ArrayList<StaticObject> staticObjects;
+	private ArrayList<StaticObject> staticObjects;
+	private ArrayList<StaticSprite> staticSprites; // non-collision sprite and background 
 	private World world;
 	
 	public MapCreator(World world){
@@ -22,9 +24,11 @@ public class MapCreator {
 		creatureObjects = new ArrayList<CreatureObject>();
 		rectDynamicObjects = new ArrayList<BaseRectDynamicObject>();
 		staticObjects = new ArrayList<StaticObject>();
+		staticSprites = new ArrayList<StaticSprite>();
 		
 		initStaticObjects();
 		initDynamicObjects();
+		initStaticSprites();
 		
 		TiledMap tileMap = new TiledMap();
 		
@@ -61,6 +65,10 @@ public class MapCreator {
 		staticObjects.add(new Door(1500f + 25f, 10f + 50f, 50f, 100f, this.world));
 	}
 	
+	private void initStaticSprites() {
+		staticSprites.add(new Sky(0,0,100f,100f));
+	}
+	
 	public  CreatureObject getPhysicalPlayer(int index) {
 		if (creatureObjects.size() > index) {
 			return creatureObjects.get(index);
@@ -80,6 +88,10 @@ public class MapCreator {
 		return creatureObjects;
 	}
 	
+	public ArrayList<StaticSprite> getStaticSprites() {
+		return staticSprites;
+	}
+
 	public AlienObject getAlien() {
 		for (BaseObject o: creatureObjects) {
 			if (o.getClass() == AlienObject.class) {

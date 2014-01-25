@@ -47,7 +47,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		camera.viewportHeight = Global.HEIGHT;  
 		camera.viewportWidth = Global.WIDTH;  
 		camera.position.set(camera.viewportWidth * .5f, camera.viewportHeight * .5f-125, 0);  
-		camera.zoom = 1f;
+		camera.zoom = 5f;
 		camera.update();  
 
 		player = mapCreator.getPhysicalPlayer(0);
@@ -77,6 +77,10 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		
+		for (StaticSprite ss: mapCreator.getStaticSprites()) {
+			ss.draw(batch);
+		}
+		
 		for (BaseObject o: mapCreator.getRectDynamicObjects()) {
 			o.draw(batch);
 		}
@@ -88,6 +92,9 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		for (BaseObject o: mapCreator.getCreatureObjects()) {
 			o.draw(batch);
 		}
+		
+		
+		
 		updateCamera();
 		batch.end();
 		debugRenderer.render(world, camera.combined);
@@ -159,6 +166,11 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 					player.resetMove();
 					player = mapCreator.getAlien();
 					((AlienObject)player).switchForceField(false);
+					
+					for (StaticSprite ss: mapCreator.getStaticSprites()) {
+						ss.changeTexture(0);
+					}
+					
 					for (BaseObject o: mapCreator.getCreatureObjects()) {
 						o.changeTexture(0);
 					}
@@ -179,6 +191,11 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 					player.move(0f);
 					player.resetMove();
 					player = mapCreator.getRobot();
+					
+					for (StaticSprite ss: mapCreator.getStaticSprites()) {
+						ss.changeTexture(1);
+					}
+					
 					for (BaseObject o: mapCreator.getCreatureObjects()) {
 						o.changeTexture(1);
 					}
