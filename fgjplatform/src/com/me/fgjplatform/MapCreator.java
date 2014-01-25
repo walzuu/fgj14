@@ -28,8 +28,8 @@ public class MapCreator {
 	
 	private void initDynamicObjects() {
 		// player characters
-		creatureObjects.add(new AlienObject(100f, 300f, 10f, 10f,this.world));
-		creatureObjects.add(new RobotObject(200f, 300f, 10f, 10f,this.world));
+		creatureObjects.add(new AlienObject(100f, 300f, 50f, 100f,this.world));
+		creatureObjects.add(new RobotObject(200f, 300f, 20f, 50f,this.world));
 		
 		rectDynamicObjects.add(new BaseRectDynamicObject(600f, 160f, 100f, 100f,this.world));
 		rectDynamicObjects.add(new BaseRectDynamicObject(600f, 60f, 100f, 100f,this.world));
@@ -57,5 +57,9 @@ public class MapCreator {
 
 	public  ArrayList<StaticObject> getStaticObjects() {
 		return staticObjects;
+	}
+	
+	public ArrayList<CreatureObject> getCreatureObjects() {
+		return creatureObjects;
 	}
 }
