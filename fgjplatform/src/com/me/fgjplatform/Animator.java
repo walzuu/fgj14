@@ -38,11 +38,19 @@ frames, walkSheet.getHeight() / FRAME_ROWS);
       //      spriteBatch = new SpriteBatch();                                // #12
             stateTime = 0f;                                                 // #13
     }
+    
+    public void flip()
+    {
+        currentFrame = walkAnimation.getKeyFrame(stateTime, true);      // #16
+        currentFrame.flip(true, false);
+    }
 
-    public void render(SpriteBatch batch, int x, int y, float width, float height) {
+    public void render(SpriteBatch batch, int x, int y, float width, float height) 
+    {
             //Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);                                            // #14
             stateTime += Gdx.graphics.getDeltaTime();                       // #15
             currentFrame = walkAnimation.getKeyFrame(stateTime, true);      // #16
+
             Sprite sprite = new Sprite();
             sprite.setRegion(currentFrame);
             sprite.setBounds(0, 0, width, height);

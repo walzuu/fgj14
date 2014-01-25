@@ -13,16 +13,18 @@ import com.badlogic.gdx.physics.box2d.World;
 public class CreatureObject extends BaseObject {
 	private boolean canJump;
 	private boolean moving;
-	
+	private boolean facingLeft;
 	private Animator anim;
 	
-	public CreatureObject(float x, float y, float width, float height,World world) {
+	public CreatureObject(float x, float y, float width, float height,World world,
+			String walkfile) {
 		super(x, y, width, height,world);
 		initPhysicalBody();
 		canJump = true;
 		moving = false;
+		facingLeft = false;
 		anim = new Animator();
-		anim.create("data/Alien.png", 2);
+		anim.create(walkfile, 1);
 	}
 	
 
@@ -33,6 +35,7 @@ public class CreatureObject extends BaseObject {
 		{
 			anim.render(batch, (int)(this.body.getWorldCenter().x), 
 					(int)(this.body.getWorldCenter().y), width, height);
+			
 		}
 		else 
 		{
@@ -40,7 +43,8 @@ public class CreatureObject extends BaseObject {
 		}
 	}
 	
-	public Body GetBody() {
+	public Body GetBody()
+	{
 		return body;
 	}
 	
@@ -79,7 +83,18 @@ public class CreatureObject extends BaseObject {
 		canJump = true;
 	}
 	
-	public void jump(){
+	public void faceLeft(boolean left)
+	{
+		if(left != facingLeft)
+		{
+			sprite.flip(true, false);
+			anim.flip();
+		}
+		facingLeft = left;
+	}
+	
+	public void jump()
+	{
 		if (canJump) {
 			canJump = true;
 			this.body.applyLinearImpulse(0, 10000000, this.body.getWorldCenter().x, this.body.getWorldCenter().y, true);

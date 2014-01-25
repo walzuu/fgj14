@@ -131,10 +131,14 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		player.resetMove();
 		if(Gdx.input.isKeyPressed(Keys.A))
 		{
+			player.faceLeft(true);
 			player.move(Gdx.graphics.getDeltaTime()*-5000f);
 		}
 		if(Gdx.input.isKeyPressed(Keys.D)) 
+		{
+			player.faceLeft(false);
 			player.move(Gdx.graphics.getDeltaTime()*5000f);
+		}
 	}
 	
 	public void sweepDeadBodies() {

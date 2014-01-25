@@ -11,8 +11,7 @@ public class AlienObject extends CreatureObject {
 	private Fixture forceFieldFixture;
 	
 	public AlienObject(float x, float y, float width, float height, World world) {
-		super(x, y, width, height,world);
-		
+		super(x, y, width, height,world, "data/Human.png");
 	}
 	
 	@Override
