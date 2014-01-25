@@ -2,6 +2,7 @@ package com.me.fgjplatform;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -26,6 +27,8 @@ public class FgjPlatform implements ApplicationListener {
 	private Sprite sprite;
 	private static World world;
 	private Box2DDebugRenderer debugRenderer;
+	private Body playerBody;
+	private CreatureObject player;
 	static final float BOX_STEP=1/60f;  
     static final int BOX_VELOCITY_ITERATIONS=6;  
     static final int BOX_POSITION_ITERATIONS=2;  
@@ -49,6 +52,9 @@ public class FgjPlatform implements ApplicationListener {
         camera.update();  
 		
 		MapCreator.CreateWorld();
+		player = MapCreator.getPhysicalPlayer();
+		playerBody = player.GetBody();
+		
 		batch = new SpriteBatch();
 		
 		texture = new Texture(Gdx.files.internal("data/libgdx.png"));
@@ -71,6 +77,11 @@ public class FgjPlatform implements ApplicationListener {
 
 	@Override
 	public void render() {		
+		float dt = Gdx.graphics.getDeltaTime();
+		Vector2 position = playerBody.getPosition();
+		if(Gdx.input.isKeyPressed(Keys.LEFT) || Gdx.input.isKeyPressed(Keys.A)) {
+			playerBody.applyLinearImpulse(-10f, 0, position.x, position.y, true);
+		}
 		
 		//Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);

@@ -14,8 +14,8 @@ import com.badlogic.gdx.physics.box2d.World;
 public class BaseObject {
 	protected float position_x;
 	protected float position_y;
-	private BodyDef bodyDef;
-	private Body body;
+	protected BodyDef bodyDef;
+	protected Body body;
 	protected World world;
 	protected OrthographicCamera camera;
 
