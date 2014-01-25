@@ -4,10 +4,13 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class MapCreator {
+	private static final float spawnGrassFrequency = 2.0f;
+	
 	private ArrayList<CreatureObject> creatureObjects;
 	private ArrayList<BaseRectDynamicObject> rectDynamicObjects;
 
@@ -69,6 +72,15 @@ public class MapCreator {
 		for (int i = 0; i < 45; ++i) {
 			for (int j=0; j<10; ++j) {
 				staticSprites.add(new Sky(-900f+i*100f, 0f+j*100f, 100f, 100f));
+			}
+		}
+		
+		for (int i = 0; i < 45; ++i) {
+			int type = MathUtils.random(0,4);
+			
+			
+			if (MathUtils.random(0.0f,spawnGrassFrequency) < 1.0f) {
+				staticSprites.add(new Grass(-900f+i*100f, 0f, 100f, 100f, type));
 			}
 		}
 	}
