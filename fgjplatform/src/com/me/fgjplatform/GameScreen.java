@@ -139,7 +139,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		for (Body body: bodies) {
 			if (body!=null) {
 				String data = (String) body.getUserData();
-				if (data == "dead") {
+				if (data == "dead" || data == "out") {
 					world.destroyBody(body);
 					body.setUserData(null);
 					body = null;
@@ -150,40 +150,42 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 	
 	@Override
 	public boolean keyDown(int keycode) {
-		if(keycode == Keys.SPACE){
-			player.jump();
-		}
-
-		if (keycode == Keys.NUM_1) {
-			if (mapCreator.getAlien() != null) {
-				player = mapCreator.getAlien();
-				for (BaseObject o: mapCreator.getCreatureObjects()) {
-					o.changeTexture(0);
-				}
-				
-				for (BaseObject o: mapCreator.getRectDynamicObjects()) {
-					o.changeTexture(0);
-				}
-				
-				for (BaseObject o: mapCreator.getStaticObjects()) {
-					o.changeTexture(0);
+		if (gameState.getGameEnding() == Global.GameEnding.none) {
+			if(keycode == Keys.SPACE){
+				player.jump();
+			}
+	
+			if (keycode == Keys.NUM_1) {
+				if (mapCreator.getAlien() != null) {
+					player = mapCreator.getAlien();
+					for (BaseObject o: mapCreator.getCreatureObjects()) {
+						o.changeTexture(0);
+					}
+					
+					for (BaseObject o: mapCreator.getRectDynamicObjects()) {
+						o.changeTexture(0);
+					}
+					
+					for (BaseObject o: mapCreator.getStaticObjects()) {
+						o.changeTexture(0);
+					}
 				}
 			}
-		}
-		
-		if (keycode == Keys.NUM_2) {
-			if (mapCreator.getRobot() != null) {
-				player = mapCreator.getRobot();
-				for (BaseObject o: mapCreator.getCreatureObjects()) {
-					o.changeTexture(1);
-				}
-				
-				for (BaseObject o: mapCreator.getRectDynamicObjects()) {
-					o.changeTexture(1);
-				}
-				
-				for (BaseObject o: mapCreator.getStaticObjects()) {
-					o.changeTexture(1);
+			
+			if (keycode == Keys.NUM_2) {
+				if (mapCreator.getRobot() != null) {
+					player = mapCreator.getRobot();
+					for (BaseObject o: mapCreator.getCreatureObjects()) {
+						o.changeTexture(1);
+					}
+					
+					for (BaseObject o: mapCreator.getRectDynamicObjects()) {
+						o.changeTexture(1);
+					}
+					
+					for (BaseObject o: mapCreator.getStaticObjects()) {
+						o.changeTexture(1);
+					}
 				}
 			}
 		}
