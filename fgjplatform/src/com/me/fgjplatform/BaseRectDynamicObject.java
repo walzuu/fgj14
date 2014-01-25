@@ -4,13 +4,14 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.physics.box2d.World;
 
 public class BaseRectDynamicObject extends BaseObject {
 	protected float width;
 	protected float height;
 
-	public BaseRectDynamicObject(float x, float y, float width, float height) {
-		super(x, y, width, height);
+	public BaseRectDynamicObject(float x, float y, float width, float height,World world) {
+		super(x, y, width, height,world);
 		this.width = width;
 		this.height = height;
 		initPhysicalBody();
