@@ -26,12 +26,16 @@ public class CollisionListener implements ContactListener {
 		if ( (userDataA == "door" && userDataB == "alien") ||
 			(userDataA == "door" && userDataB == "robot")) {
 			if (userDataB == "alien") {
-				gameState.sendToGoal(mapCreator.getAlien());
+				gameState.sendToGoal("alien");
+				mapCreator.removeAlien();
 			}
 			
 			if (userDataB == "robot") {
-				gameState.sendToGoal(mapCreator.getRobot());
+				gameState.sendToGoal("robot");
+				mapCreator.removeRobot();
 			}
+			
+			//world.destroyBody(contact.getFixtureB().getBody());
 		}
 	}
 
