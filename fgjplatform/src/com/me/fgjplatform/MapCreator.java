@@ -40,8 +40,9 @@ public class MapCreator {
 		
 		staticObjects.add(new Ground(0f + 100f, 10f - 50f, 200f, 100f, this.world));
 		staticObjects.add(new Ground(300f + 200f, 10f - 50f, 400f, 100f, this.world));
-		staticObjects.add(new Tree(400f, 10f + 50f, 20f, 100f, this.world));
+		staticObjects.add(new Tree(400f + 20f, 10f + 50f, 20f, 100f, this.world));
 		staticObjects.add(new Water(200f + 50f, 10 - 50f, 100f, 100f, this.world));
+		staticObjects.add(new Door(800f + 25f, 10f + 50f, 50f, 100f, this.world));
 	}
 	
 	public  CreatureObject getPhysicalPlayer(int index) {
