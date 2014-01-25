@@ -23,7 +23,7 @@ public class CreatureObject extends BaseObject {
         bodyDef.position.set(Global.WIDTH / 2, Global.HEIGHT / 2);  
         body = world.createBody(bodyDef);  
         CircleShape dynamicCircle = new CircleShape();  
-        dynamicCircle.setRadius(5f);  
+        dynamicCircle.setRadius(30f);  
         FixtureDef fixtureDef = new FixtureDef();  
         fixtureDef.shape = dynamicCircle;  
         fixtureDef.density = 0.5f;  
@@ -33,10 +33,10 @@ public class CreatureObject extends BaseObject {
 	}
 	
 	public void jump(){
-		this.body.applyLinearImpulse(0, 1000, this.body.getWorldCenter().x, this.body.getWorldCenter().y, true);
+		this.body.applyLinearImpulse(0, 10000000, this.body.getWorldCenter().x, this.body.getWorldCenter().y, true);
 	}
 	
 	public void move(float transform){
-		this.body.applyLinearImpulse(transform, 0, this.body.getWorldCenter().x, this.body.getWorldCenter().y, true);
+		this.body.setLinearVelocity(transform, this.body.getLinearVelocity().y);
 	}
 }

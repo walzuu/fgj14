@@ -37,7 +37,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 
 		Gdx.input.setInputProcessor(this);
 
-		world = new World(new Vector2(0, -10), true);
+		world = new World(new Vector2(0, -119.81f), true);
 		mapCreator = new MapCreator(world);
 		camera = new OrthographicCamera();  
 		camera.viewportHeight = Global.HEIGHT;  
@@ -105,7 +105,13 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 
 	@Override
 	public boolean keyUp(int keycode) {
-		// TODO Auto-generated method stub
+		if(keycode == Keys.A){
+			player.move(0f);
+		}
+		
+		if(keycode == Keys.D){
+			player.move(0f);
+		}
 		return false;
 	}
 

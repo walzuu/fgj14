@@ -29,7 +29,8 @@ public class MapCreator {
 	private void initDynamicObjects() {
 		creatureObjects.add(new CreatureObject(0f, 300f, 10f, 10f,this.world));
 		
-		rectDynamicObjects.add(new BaseRectDynamicObject(300f, 110f, 100f, 200f,this.world));
+		rectDynamicObjects.add(new BaseRectDynamicObject(300f, 110f, 100f, 50f,this.world));
+		rectDynamicObjects.add(new BaseRectDynamicObject(400f, 110f, 50f, 200f,this.world));
 	}
 	
 	private  void initStaticObjects() {

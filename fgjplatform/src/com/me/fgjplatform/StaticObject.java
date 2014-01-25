@@ -14,7 +14,7 @@ public class StaticObject extends BaseObject {
 	
 	private void initPhysicalBody() {
 		bodyDef = new BodyDef();  
-        bodyDef.position.set(new Vector2(Global.PtoM(position_x), Global.PtoM(position_y)));  
+        bodyDef.position.set(new Vector2(position_x,position_y));  
         body = world.createBody(bodyDef);  
         PolygonShape groundBox = new PolygonShape();  
         groundBox.setAsBox((Global.WIDTH) * 1f, 10.0f);  
