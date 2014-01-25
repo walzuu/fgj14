@@ -26,6 +26,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 	private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
 	private Body playerBody;
 	private CreatureObject player;
+	private GameState gameState;
 	static final float BOX_STEP=1/60f;  
 	static final int BOX_VELOCITY_ITERATIONS=6;  
 	static final int BOX_POSITION_ITERATIONS=2; 
@@ -43,7 +44,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		camera.viewportHeight = Global.HEIGHT;  
 		camera.viewportWidth = Global.WIDTH;  
 		camera.position.set(camera.viewportWidth * .5f, camera.viewportHeight * .5f, 0);  
-		camera.zoom = 6f;
+		camera.zoom = 1f;
 		camera.update();  
 
 		player = mapCreator.getPhysicalPlayer(0);
@@ -63,7 +64,8 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		
 		// CollisionListener calls proper functions when user collides with
 		// a special object
-		world.setContactListener(new CollisionListener(world, null));
+		gameState = new GameState(world);
+		world.setContactListener(new CollisionListener(world, gameState, mapCreator));
 	}
 
 	@Override
@@ -73,7 +75,8 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 	}
 
 	@Override
-	public void render(float delta) {		
+	public void render(float delta) {	
+		checkGameEnding();
 		updateMovement();
 		//Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
@@ -98,6 +101,21 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		world.step(1/60f, 6, 2);
 	}
 
+	public void checkGameEnding() {
+		if (gameState != null) {
+			switch (gameState.getGameEnding()) {
+			case none:
+				break;
+			case win:
+				System.out.println("YOU WIN!");
+				break;
+			case lose:
+				System.out.println("YOU LOSE!");
+				break;
+			}
+		}
+	}
+	
 	public void updateCamera(){
 		playerBody = player.GetBody();
         camera.position.set(playerBody.getPosition().x, playerBody.getPosition().y, 0);
@@ -106,9 +124,9 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 	
 	public void updateMovement() {
 		if(Gdx.input.isKeyPressed(Keys.A)) 
-			player.move(Gdx.graphics.getDeltaTime()*-3000f);
+			player.move(Gdx.graphics.getDeltaTime()*-5000f);
 		if(Gdx.input.isKeyPressed(Keys.D)) 
-			player.move(Gdx.graphics.getDeltaTime()*3000f);
+			player.move(Gdx.graphics.getDeltaTime()*5000f);
 	}
 	
 	@Override
@@ -119,10 +137,32 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 
 		if (keycode == Keys.NUM_1) {
 			player = mapCreator.getPhysicalPlayer(0);
+			for (BaseObject o: mapCreator.getCreatureObjects()) {
+				o.changeTexture(0);
+			}
+			
+			for (BaseObject o: mapCreator.getRectDynamicObjects()) {
+				o.changeTexture(0);
+			}
+			
+			for (BaseObject o: mapCreator.getStaticObjects()) {
+				o.changeTexture(0);
+			}
 		}
 		
 		if (keycode == Keys.NUM_2) {
 			player = mapCreator.getPhysicalPlayer(1);
+			for (BaseObject o: mapCreator.getCreatureObjects()) {
+				o.changeTexture(1);
+			}
+			
+			for (BaseObject o: mapCreator.getRectDynamicObjects()) {
+				o.changeTexture(1);
+			}
+			
+			for (BaseObject o: mapCreator.getStaticObjects()) {
+				o.changeTexture(1);
+			}
 		}
 
 		return false;

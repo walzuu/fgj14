@@ -10,9 +10,12 @@ public class CollisionListener implements ContactListener {
 
 	private World world;
 	private GameState gameState;
+	private MapCreator mapCreator;
 	
-	public CollisionListener(World world, GameState gameState) {
+	public CollisionListener(World world, GameState gameState, MapCreator mapCreator) {
 		this.world = world;
+		this.gameState = gameState;
+		this.mapCreator = mapCreator;
 	}
 	
 	@Override
@@ -22,7 +25,13 @@ public class CollisionListener implements ContactListener {
 		Object userDataB = contact.getFixtureB().getBody().getUserData();
 		if ( (userDataA == "door" && userDataB == "alien") ||
 			(userDataA == "door" && userDataB == "robot")) {
+			if (userDataB == "alien") {
+				gameState.sendToGoal(mapCreator.getAlien());
+			}
 			
+			if (userDataB == "robot") {
+				gameState.sendToGoal(mapCreator.getRobot());
+			}
 		}
 	}
 
