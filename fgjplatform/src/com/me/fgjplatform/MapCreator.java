@@ -8,7 +8,7 @@ public class MapCreator {
 	private ArrayList<CreatureObject> creatureObjects;
 	private ArrayList<BaseRectDynamicObject> rectDynamicObjects;
 
-	private  ArrayList<StaticObject> groundObjects;
+	private  ArrayList<StaticObject> staticObjects;
 	private World world;
 	
 	public MapCreator(World world){
@@ -19,7 +19,7 @@ public class MapCreator {
 	private void createWorld() {
 		creatureObjects = new ArrayList<CreatureObject>();
 		rectDynamicObjects = new ArrayList<BaseRectDynamicObject>();
-		groundObjects = new ArrayList<StaticObject>();
+		staticObjects = new ArrayList<StaticObject>();
 		
 		initStaticObjects();
 		initDynamicObjects();
@@ -36,7 +36,7 @@ public class MapCreator {
 	}
 	
 	private  void initStaticObjects() {
-		groundObjects.add(new StaticObject(Global.WIDTH/2, 5f, Global.WIDTH, 10f, this.world));
+		staticObjects.add(new StaticObject(Global.WIDTH/2, 5f, Global.WIDTH, 10f, this.world));
 	}
 	
 	public  CreatureObject getPhysicalPlayer(int index) {
@@ -50,7 +50,7 @@ public class MapCreator {
 		return rectDynamicObjects;
 	}
 
-	public  ArrayList<StaticObject> getGroundObjects() {
-		return groundObjects;
+	public  ArrayList<StaticObject> getStaticObjects() {
+		return staticObjects;
 	}
 }

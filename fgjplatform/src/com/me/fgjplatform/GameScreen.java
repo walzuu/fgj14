@@ -79,6 +79,10 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		for (BaseObject o :mapCreator.getRectDynamicObjects()) {
 			o.draw(batch);
 		}
+		
+		for (BaseObject o: mapCreator.getStaticObjects()) {
+			o.draw(batch);
+		}
 
 		batch.end();
 		debugRenderer.render(world, camera.combined);
