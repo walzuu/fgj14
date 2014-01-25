@@ -42,7 +42,22 @@ public class Water extends StaticObject{
 		// TODO Auto-generated method stub
         a = new Animator();
 		a.create("data/water1.png", 4);
-		super.loadTextures("data/water1.png");
+		super.loadTextures("data/water1.png", "data/corrosive_anim.png");
+	}
+	
+	@Override
+	public void changeTexture(int textureId) {
+		if (this.textures.size() > 0 && textureId >= 0 && textureId < this.textures.size()) {
+			a = new Animator();
+			switch (textureId) {
+			case 0:
+				a.create("data/water1.png", 4);
+				break;
+			case 1:
+				a.create("data/corrosive_anim.png", 4);
+				break;
+			}
+		}
 	}
 	
 }

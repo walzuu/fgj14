@@ -96,7 +96,7 @@ public class CreatureObject extends BaseObject {
 	public void jump()
 	{
 		if (canJump) {
-			canJump = true;
+			canJump = false;
 			this.body.applyLinearImpulse(0, 1000000000f, this.body.getWorldCenter().x, this.body.getWorldCenter().y, true);
 		}
 	}

@@ -18,7 +18,7 @@ public class BaseRectDynamicObject extends BaseObject {
 
 	@Override
 	public void loadTextures() {
-		this.loadTextures("data/crate.png");
+		this.loadTextures("data/crate.png", "data/crate2.png");
 	}
 	
 	private void initPhysicalBody() {
