@@ -91,6 +91,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		batch.end();
 		debugRenderer.render(world, camera.combined);
 		world.step(1/60f, 6, 2);
+		world.setContactListener(new CollisionListener());
 	}
 
 	public void updateCamera(){

@@ -18,7 +18,7 @@ public class CreatureObject extends BaseObject {
 		return body;
 	}
 	
-	private void initPhysicalBody() {
+	protected void initPhysicalBody() {
 		bodyDef = new BodyDef();  
         bodyDef.type = BodyType.DynamicBody;
         bodyDef.position.set(position_x, position_y);  

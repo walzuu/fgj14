@@ -12,4 +12,10 @@ public class AlienObject extends CreatureObject {
 	public Sprite loadSprite() {
 		return super.loadSprite("data/alien.png");
 	}
+	
+	@Override
+	protected void initPhysicalBody() {
+		super.initPhysicalBody();
+		body.setUserData("alien");
+	}
 }
