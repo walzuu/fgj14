@@ -48,7 +48,7 @@ public class BaseObject {
 	
 	// load the sprite:
 	public Sprite loadSprite() {
-		return loadSprite("data/test.png");
+		return loadSprite("data/crate.png");
 	}
 	
 	// load the sprite from specific sprite path:
