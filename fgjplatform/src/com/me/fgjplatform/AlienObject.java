@@ -10,7 +10,7 @@ public class AlienObject extends CreatureObject {
 	
 	@Override
 	public void loadTextures() {
-		super.loadTextures("data/Alien.png", "data/Human.png");
+		super.loadTextures("data/Human.png", "data/Alien.png");
 	}
 	
 	@Override

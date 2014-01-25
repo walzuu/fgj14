@@ -2,6 +2,7 @@ package com.me.fgjplatform;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class MapCreator {
@@ -23,6 +24,8 @@ public class MapCreator {
 		
 		initStaticObjects();
 		initDynamicObjects();
+		
+		TiledMap tileMap = new TiledMap();
 		
 	}
 	

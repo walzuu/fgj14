@@ -11,9 +11,9 @@ public class Tree extends StaticObject {
 	}
 	
 	@Override
-	public Sprite loadSprite() {
+	public void loadTextures() {
 		// TODO Auto-generated method stub
-		return super.loadSprite("data/tree.png");
+		super.loadTextures("data/tree.png", "data/tree2.png");
 	}
 
 }
