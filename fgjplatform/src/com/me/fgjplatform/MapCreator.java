@@ -78,6 +78,7 @@ public class MapCreator {
 		for (int i = 0; i < 45; ++i) {
 			int type = MathUtils.random(0,4);
 			
+			
 			if (MathUtils.random(0.0f,spawnGrassFrequency) < 1.0f) {
 				staticSprites.add(new Grass(-900f+i*100f, 0f, 100f, 100f, type));
 			}
