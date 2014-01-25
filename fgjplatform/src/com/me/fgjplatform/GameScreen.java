@@ -76,6 +76,10 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		
+		for (BaseObject o: mapCreator.getRectDynamicObjects()) {
+			o.draw(batch);
+		}
+		
 		for (BaseObject o: mapCreator.getStaticObjects()) {
 			o.draw(batch);
 		}
