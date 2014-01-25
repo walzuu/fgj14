@@ -1,5 +1,6 @@
 package com.me.fgjplatform;
 
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -20,11 +21,13 @@ public class CollisionListener implements ContactListener {
 	
 	@Override
 	public void beginContact(Contact contact) {
-		
-		Object userDataA = contact.getFixtureA().getBody().getUserData();
-		Object userDataB = contact.getFixtureB().getBody().getUserData();
+		Body bodyA = contact.getFixtureA().getBody();
+		Body bodyB = contact.getFixtureB().getBody();
+		Object userDataA = bodyA.getUserData();
+		Object userDataB = bodyB.getUserData();
 		if ( (userDataA == "door" && userDataB == "alien") ||
-			(userDataA == "door" && userDataB == "robot")) {
+			(userDataA == "door" && userDataB == "robot") ) {
+			
 			if (userDataB == "alien") {
 				gameState.sendToGoal("alien");
 				mapCreator.removeAlien();
@@ -35,7 +38,7 @@ public class CollisionListener implements ContactListener {
 				mapCreator.removeRobot();
 			}
 			
-			//world.destroyBody(contact.getFixtureB().getBody());
+			bodyB.setUserData("dead");
 		}
 	}
 

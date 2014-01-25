@@ -1,5 +1,7 @@
 package com.me.fgjplatform;
 
+import java.util.Iterator;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
@@ -15,6 +17,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 
 public class GameScreen extends DefaultScreen implements InputProcessor  {
 
@@ -99,6 +102,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		batch.end();
 		debugRenderer.render(world, camera.combined);
 		world.step(1/60f, 6, 2);
+		sweepDeadBodies();
 	}
 
 	public void checkGameEnding() {
@@ -129,6 +133,21 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 			player.move(Gdx.graphics.getDeltaTime()*5000f);
 	}
 	
+	public void sweepDeadBodies() {
+		Array<Body> bodies = new Array<Body>();
+		world.getBodies(bodies);
+		for (Body body: bodies) {
+			if (body!=null) {
+				String data = (String) body.getUserData();
+				if (data == "dead") {
+					world.destroyBody(body);
+					body.setUserData(null);
+					body = null;
+				}
+			}
+		}
+	}
+	
 	@Override
 	public boolean keyDown(int keycode) {
 		if(keycode == Keys.SPACE){
@@ -136,32 +155,36 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		}
 
 		if (keycode == Keys.NUM_1) {
-			player = mapCreator.getPhysicalPlayer(0);
-			for (BaseObject o: mapCreator.getCreatureObjects()) {
-				o.changeTexture(0);
-			}
-			
-			for (BaseObject o: mapCreator.getRectDynamicObjects()) {
-				o.changeTexture(0);
-			}
-			
-			for (BaseObject o: mapCreator.getStaticObjects()) {
-				o.changeTexture(0);
+			if (mapCreator.getAlien() != null) {
+				player = mapCreator.getAlien();
+				for (BaseObject o: mapCreator.getCreatureObjects()) {
+					o.changeTexture(0);
+				}
+				
+				for (BaseObject o: mapCreator.getRectDynamicObjects()) {
+					o.changeTexture(0);
+				}
+				
+				for (BaseObject o: mapCreator.getStaticObjects()) {
+					o.changeTexture(0);
+				}
 			}
 		}
 		
 		if (keycode == Keys.NUM_2) {
-			player = mapCreator.getPhysicalPlayer(1);
-			for (BaseObject o: mapCreator.getCreatureObjects()) {
-				o.changeTexture(1);
-			}
-			
-			for (BaseObject o: mapCreator.getRectDynamicObjects()) {
-				o.changeTexture(1);
-			}
-			
-			for (BaseObject o: mapCreator.getStaticObjects()) {
-				o.changeTexture(1);
+			if (mapCreator.getRobot() != null) {
+				player = mapCreator.getRobot();
+				for (BaseObject o: mapCreator.getCreatureObjects()) {
+					o.changeTexture(1);
+				}
+				
+				for (BaseObject o: mapCreator.getRectDynamicObjects()) {
+					o.changeTexture(1);
+				}
+				
+				for (BaseObject o: mapCreator.getStaticObjects()) {
+					o.changeTexture(1);
+				}
 			}
 		}
 
