@@ -11,17 +11,24 @@ import com.badlogic.gdx.physics.box2d.World;
 
 public class Ground extends StaticObject {
 
-	public Ground(float x, float y, float width, float height, World world) {
+	private boolean isTopGround;
+	
+	public Ground(float x, float y, float width, float height, World world, boolean isTopGround) {
 		super(x, y, width, height, world);
 		// TODO Auto-generated constructor stub
-		
+		this.isTopGround = isTopGround;
+		loadTextures();
 		this.sprite.setTexture(textures.get(0));
 	}
 	
 	@Override
 	public void loadTextures() {
 		// TODO Auto-generated method stub
-		this.loadTextures("data/gtile0.png");
+		int textureNumber = 0;
+		if (this.isTopGround)
+			textureNumber = (int)(Math.random() * ((2) + 1)) + 1;
+		System.out.println("texture number "+textureNumber);
+		this.loadTextures("data/gtile"+textureNumber+".png");
 		this.textures.get(0).setWrap(TextureWrap.Repeat, TextureWrap.Repeat);
 		
 	}

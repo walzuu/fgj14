@@ -46,7 +46,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		camera = new OrthographicCamera();  
 		camera.viewportHeight = Global.HEIGHT;  
 		camera.viewportWidth = Global.WIDTH;  
-		camera.position.set(camera.viewportWidth * .5f, camera.viewportHeight * .5f, 0);  
+		camera.position.set(camera.viewportWidth * .5f, camera.viewportHeight * .5f-125, 0);  
 		camera.zoom = 1f;
 		camera.update();  
 
@@ -122,7 +122,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 	
 	public void updateCamera(){
 		playerBody = player.GetBody();
-        camera.position.set(playerBody.getPosition().x, playerBody.getPosition().y, 0);
+        camera.position.set(playerBody.getPosition().x, camera.position.y, 0);
         camera.update();
 	}
 	

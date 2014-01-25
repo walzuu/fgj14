@@ -40,19 +40,22 @@ public class MapCreator {
 	}
 	
 	private  void initStaticObjects() {
-		staticObjects.add(new Ground(-1000f + 2000f, -190f + 50f, 4000f, 100f, this.world));
-		staticObjects.add(new Ground(-1000f + 250f, -90f + 500f, 500f, 1000f, this.world));
+		for (int i = 0; i < 45; ++i) {
+			staticObjects.add(new Ground(-850f+i*100f, -140f, 100f, 100f, this.world, false));
+		}
 		
-		staticObjects.add(new Ground(-500f + 800f, -90f + 50f, 1600f, 100f, this.world));
+		for (int i = 0; i < 20; ++i) {
+			staticObjects.add(new Ground(-850f+i*100f, -40f, 100f, 100f, this.world, true));
+		}
+		
 		staticObjects.add(new Water(1100f + 50f, -94f + 50f, 100f, 92f, this.world));
-		staticObjects.add(new Ground(1200f + 50f, -90f + 50f, 100f, 100f, this.world));
+		staticObjects.add(new Ground(1200f + 50f, -90f + 50f, 100f, 100f, this.world, true));
 		staticObjects.add(new Water(1300f + 50f, -94f + 50f, 100f, 92f, this.world));
-		staticObjects.add(new Ground(1400f + 250f, -90f + 50f, 500f, 100f, this.world));
-		staticObjects.add(new Ground(1900f + 250f, -90f + 500f, 500f, 1000f, this.world));
 		
-		//staticObjects.add(new Ground(-500f + 350f, -90f + 50f, 700f, 100f, this.world));
-		//staticObjects.add(new Ground(300f + 200f, -90 + 50f, 400f, 100f, this.world));
-		
+		for (int i = 0; i < 20; ++i) {
+			staticObjects.add(new Ground(1450f + i*100f, -90f + 50f, 100f, 100f, this.world, true));
+		}
+
 		staticObjects.add(new Tree(200f + 100f, 10f + 100f, 100f, 200f, this.world));
 		staticObjects.add(new Tree(700f + 50f, 10f + 100f, 100f, 200f, this.world));
 		staticObjects.add(new Door(1500f + 25f, 10f + 50f, 50f, 100f, this.world));

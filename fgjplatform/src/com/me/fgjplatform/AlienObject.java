@@ -12,6 +12,7 @@ public class AlienObject extends CreatureObject {
 	
 	public AlienObject(float x, float y, float width, float height, World world) {
 		super(x, y, width, height,world);
+		
 	}
 	
 	@Override
