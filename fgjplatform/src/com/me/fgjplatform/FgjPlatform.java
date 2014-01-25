@@ -89,7 +89,9 @@ public class FgjPlatform implements ApplicationListener {
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		
-		
+		for (BaseObject o : MapCreator.getRectDynamicObjects()) {
+			o.draw(batch);
+		}
 		
 		batch.end();
 		debugRenderer.render(world, camera.combined);

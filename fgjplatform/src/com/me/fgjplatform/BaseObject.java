@@ -37,10 +37,11 @@ public class BaseObject {
 		this.camera = FgjPlatform.GetCamera();
 		
 		
-		
+		this.sprite = loadSprite();
 	}
 	
 	public void draw(SpriteBatch batch) {
+		this.sprite.setPosition(this.position_x - this.sprite.getWidth()/2, this.position_y - this.sprite.getHeight()/2);
 		this.sprite.draw(batch);
 	}
 	

@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.World;
 public class MapCreator {
 	private static ArrayList<CreatureObject> creatureObjects;
 	private static ArrayList<BaseRectDynamicObject> rectDynamicObjects;
+
 	private static ArrayList<StaticObject> groundObjects;
 	private static World world;
 	
@@ -36,5 +37,13 @@ public class MapCreator {
 			return creatureObjects.get(0);
 		}
 		return null;
+	}
+	
+	public static ArrayList<BaseRectDynamicObject> getRectDynamicObjects() {
+		return rectDynamicObjects;
+	}
+
+	public static ArrayList<StaticObject> getGroundObjects() {
+		return groundObjects;
 	}
 }
