@@ -36,9 +36,10 @@ public class BaseObject {
 		this.height = height;
 		
 		this.world = world;		
-
-		this.sprite = loadSprite();
+		
 		this.loadTextures();
+		this.sprite = loadSprite();
+		
 	}
 	
 	public void draw(SpriteBatch batch) {
@@ -52,7 +53,14 @@ public class BaseObject {
 	
 	// load the sprite:
 	public Sprite loadSprite() {
-		return loadSprite("data/crate.png");
+		if (textures.size() > 0) {
+			Sprite s = new Sprite(textures.get(0));
+			s.setSize(this.width, this.height);
+			s.setOrigin(s.getWidth()/2, s.getHeight()/2);
+			
+			return s;
+		} else
+			return loadSprite("data/crate.png");
 	}
 	
 	// load the sprite from specific sprite path:
