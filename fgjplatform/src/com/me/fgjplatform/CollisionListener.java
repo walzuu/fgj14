@@ -41,7 +41,7 @@ public class CollisionListener implements ContactListener {
 
 		if (userDataA == "tree" && 
 				(String)contact.getFixtureB().getUserData() == "forcefield") {
-			System.out.println("puu "+contact.getFixtureB().getUserData());
+			handleTreeRemoval(bodyA);
 		}
 		
 		if (contact.getFixtureB().getUserData() == "feet") {
@@ -53,6 +53,11 @@ public class CollisionListener implements ContactListener {
 				mapCreator.getRobot().resetJump();
 			}
 		}
+	}
+	
+	private void handleTreeRemoval(Body bodyA) {
+		mapCreator.removeStaticObject(bodyA);
+		bodyA.setUserData("dead");
 	}
 	
 	private void handleDoorCollision(Body bodyB) {

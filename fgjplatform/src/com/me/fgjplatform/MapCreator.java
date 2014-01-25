@@ -3,6 +3,7 @@ package com.me.fgjplatform;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class MapCreator {
@@ -100,5 +101,19 @@ public class MapCreator {
 	
 	public void removeRobot() {
 		creatureObjects.remove(getRobot());
+	}
+	
+	public void removeStaticObject(Body body) {
+		StaticObject objectToRemove = null;
+		for (StaticObject o : staticObjects) {
+			if (o.body == body) {
+				objectToRemove = o;
+				break;
+			}
+		}
+		
+		if (objectToRemove != null) {
+			staticObjects.remove(objectToRemove);
+		}
 	}
 }

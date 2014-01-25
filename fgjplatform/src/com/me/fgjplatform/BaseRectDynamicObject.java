@@ -27,7 +27,7 @@ public class BaseRectDynamicObject extends BaseObject {
 		bodyDef.position.set(position_x, position_y);
 		
 		body = world.createBody(bodyDef);
-		
+		body.setFixedRotation(true);
 		PolygonShape bodyShape = new PolygonShape();
 		bodyShape.setAsBox(width/2, height/2);
 		
