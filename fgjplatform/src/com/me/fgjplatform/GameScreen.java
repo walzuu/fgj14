@@ -76,19 +76,21 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		
-		for (BaseObject o :mapCreator.getRectDynamicObjects()) {
-			o.draw(batch);
-		}
-		
 		for (BaseObject o: mapCreator.getStaticObjects()) {
 			o.draw(batch);
 		}
-
+		updateCamera();
 		batch.end();
 		debugRenderer.render(world, camera.combined);
 		world.step(1/60f, 6, 2);
 	}
 
+	public void updateCamera(){
+		playerBody = player.GetBody();
+        camera.position.set(playerBody.getPosition().x, playerBody.getPosition().y, 0);
+        camera.update();
+	}
+	
 	public void updateMovement() {
 		if(Gdx.input.isKeyPressed(Keys.A)) 
 			player.move(Gdx.graphics.getDeltaTime()*-3000f);
