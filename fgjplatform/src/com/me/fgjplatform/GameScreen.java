@@ -124,9 +124,9 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 	
 	public void updateMovement() {
 		if(Gdx.input.isKeyPressed(Keys.A)) 
-			player.move(Gdx.graphics.getDeltaTime()*-10000f);
+			player.move(Gdx.graphics.getDeltaTime()*-5000f);
 		if(Gdx.input.isKeyPressed(Keys.D)) 
-			player.move(Gdx.graphics.getDeltaTime()*10000f);
+			player.move(Gdx.graphics.getDeltaTime()*5000f);
 	}
 	
 	@Override
