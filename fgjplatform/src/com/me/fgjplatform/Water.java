@@ -23,6 +23,9 @@ public class Water extends StaticObject{
 	{
 		a.render(batch,(int)(this.body.getWorldCenter().x - this.sprite.getWidth()/2), 
 				(int)(this.body.getWorldCenter().y - this.sprite.getHeight()/2));
+		//a.render(batch,(int)(this.body.getWorldCenter().x), 
+		//		(int)(this.body.getWorldCenter().y));
+	
 	}
 	
 	@Override
@@ -41,8 +44,8 @@ public class Water extends StaticObject{
 	public void loadTextures() {
 		// TODO Auto-generated method stub
         a = new Animator();
-		a.create("data/water1.png", 3);
-		super.loadTextures("data/water1.png");
+		a.create("data/water1.png", 4);
+		//super.loadTextures("data/water1.png");
 	}
 	
 }
