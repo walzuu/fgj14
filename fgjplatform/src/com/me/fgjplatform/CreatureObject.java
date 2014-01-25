@@ -31,8 +31,8 @@ public class CreatureObject extends BaseObject {
 	{
 		if(moving)
 		{
-			anim.render(batch, (int)(this.body.getWorldCenter().x - this.sprite.getWidth()/2), 
-					(int)(this.body.getWorldCenter().y - this.sprite.getHeight()/2));
+			anim.render(batch, (int)(this.body.getWorldCenter().x), 
+					(int)(this.body.getWorldCenter().y), width, height);
 		}
 		else 
 		{

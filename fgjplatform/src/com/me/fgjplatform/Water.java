@@ -21,8 +21,8 @@ public class Water extends StaticObject{
 	@Override
 	public void draw(SpriteBatch batch)
 	{
-		a.render(batch,(int)(this.body.getWorldCenter().x - this.sprite.getWidth()/2), 
-				(int)(this.body.getWorldCenter().y - this.sprite.getHeight()/2));
+		a.render(batch,(int)(this.body.getWorldCenter().x), 
+				(int)(this.body.getWorldCenter().y), width, height);
 	}
 	
 	@Override
