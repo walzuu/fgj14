@@ -25,9 +25,18 @@ public class CollisionListener implements ContactListener {
 		Body bodyB = contact.getFixtureB().getBody();
 		Object userDataA = bodyA.getUserData();
 		Object userDataB = bodyB.getUserData();
-		if ( (userDataA == "door" && userDataB == "alien") ||
-			(userDataA == "door" && userDataB == "robot") ) {
-			
+		if (userDataA == "door") {
+			handleDoorCollision(bodyB);
+		}
+		
+		if (userDataA == "water") {
+			handleWaterCollision(bodyB);
+		}
+	}
+	
+	private void handleDoorCollision(Body bodyB) {
+		String userDataB = (String) bodyB.getUserData();
+		if (userDataB == "alien" || userDataB == "robot") {
 			if (userDataB == "alien") {
 				gameState.sendToGoal("alien");
 				mapCreator.removeAlien();
@@ -35,6 +44,22 @@ public class CollisionListener implements ContactListener {
 			
 			if (userDataB == "robot") {
 				gameState.sendToGoal("robot");
+				mapCreator.removeRobot();
+			}
+			bodyB.setUserData("out");
+		}
+	}
+	
+	private void handleWaterCollision(Body bodyB) {
+		String userDataB = (String) bodyB.getUserData();
+		if (userDataB == "alien" || userDataB == "robot") {
+			if (userDataB == "alien") {
+				gameState.kill("alien");
+				mapCreator.removeAlien();
+			}
+			
+			if (userDataB == "robot") {
+				gameState.kill("robot");
 				mapCreator.removeRobot();
 			}
 			

@@ -22,6 +22,7 @@ public class Water extends StaticObject{
         groundBox.setAsBox(width/2, height/2);  
         Fixture fixture = body.createFixture(groundBox, 0.0f);
         fixture.setSensor(true);
+        body.setUserData("water");
 	}
 	
 	@Override

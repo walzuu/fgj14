@@ -31,6 +31,12 @@ public class GameState {
 		}
 	}
 	
+	public void kill(String name) {
+		if (name == "alien" || name == "robot") {
+			setGameEnding(Global.GameEnding.lose);
+		}
+	}
+	
 	public void setGameEnding(Global.GameEnding ending) {
 		gameEnding = ending;
 	}
