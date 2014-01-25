@@ -22,7 +22,7 @@ public class StaticObject extends BaseObject {
         
         FixtureDef fixtureDef = new FixtureDef();  
         fixtureDef.shape = groundBox;  
-        fixtureDef.friction = 0.01f;
+        fixtureDef.friction = 0.0f;
         fixtureDef.density = 0.0f;
 
         body.createFixture(fixtureDef);
