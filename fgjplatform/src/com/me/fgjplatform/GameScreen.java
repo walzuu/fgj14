@@ -192,13 +192,20 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 
 		return false;
 	}
-
+	
+	
 	@Override
 	public boolean keyUp(int keycode) {
+		
+		
 		if(keycode == Keys.A){
 			player.move(0f);
 		}
-		
+		else
+		{
+			//this stops the move animation, but D may start it again
+			player.resetMove();
+		}
 		if(keycode == Keys.D){
 			player.move(0f);
 		}
