@@ -16,6 +16,8 @@ public class CreatureObject extends BaseObject {
 	private boolean facingLeft;
 	private Animator anim;
 	
+	protected FixtureDef fixtureSensorFeet;
+	
 	public CreatureObject(float x, float y, float width, float height,World world,
 			String walkfile) {
 		super(x, y, width, height,world);
@@ -56,21 +58,21 @@ public class CreatureObject extends BaseObject {
         body.setFixedRotation(true);
         PolygonShape dynamicBox = new PolygonShape();  
         dynamicBox.setAsBox(width/2, height/2);  
-        FixtureDef fixtureDef = new FixtureDef();  
+        fixtureDef = new FixtureDef();  
         fixtureDef.shape = dynamicBox;  
         fixtureDef.density = 0.1f;
         fixtureDef.friction = 0.1f;
         fixtureDef.restitution = 0.3f;
-        body.createFixture(fixtureDef);
+        this.fixture = body.createFixture(fixtureDef);
         
-        FixtureDef fixtureSensor = new FixtureDef();
+        fixtureSensorFeet = new FixtureDef();
         PolygonShape sensorShape = new PolygonShape();
         Vector2[] vertices = { new Vector2(-width/2.2f,-height/1.9f), new Vector2(width/2.2f,-height/1.9f), 
         		new Vector2(width/2.2f,-height/2), new Vector2(-width/2.2f, -height/2) };
         sensorShape.set(vertices);
-        fixtureSensor.shape = sensorShape;
-        fixtureSensor.isSensor = true;
-        Fixture fixture = body.createFixture(fixtureSensor);
+        fixtureSensorFeet.shape = sensorShape;
+        fixtureSensorFeet.isSensor = true;
+        Fixture fixture = body.createFixture(fixtureSensorFeet);
         fixture.setUserData("feet");
 	}
 	

@@ -9,7 +9,6 @@ import com.badlogic.gdx.physics.box2d.World;
 
 public class BaseRectDynamicObject extends BaseObject {
 
-
 	public BaseRectDynamicObject(float x, float y, float width, float height,World world) {
 		super(x, y, width, height, world);
 		
@@ -31,6 +30,6 @@ public class BaseRectDynamicObject extends BaseObject {
 		PolygonShape bodyShape = new PolygonShape();
 		bodyShape.setAsBox(width/2, height/2);
 		
-		body.createFixture(bodyShape, 1.0f);
+		this.fixture = body.createFixture(bodyShape, 1.0f);
 	}
 }

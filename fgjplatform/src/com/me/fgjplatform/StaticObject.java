@@ -20,11 +20,11 @@ public class StaticObject extends BaseObject {
         PolygonShape groundBox = new PolygonShape();  
         groundBox.setAsBox(width/2, height/2);  
         
-        FixtureDef fixtureDef = new FixtureDef();  
+        fixtureDef = new FixtureDef();  
         fixtureDef.shape = groundBox;  
         fixtureDef.friction = 0.0f;
         fixtureDef.density = 0.0f;
 
-        body.createFixture(fixtureDef);
+        this.fixture = body.createFixture(fixtureDef);
 	}
 }

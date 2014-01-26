@@ -11,6 +11,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class BaseObject {
@@ -22,7 +24,10 @@ public class BaseObject {
 	
 	protected BodyDef bodyDef;
 	protected Body body;
+	protected FixtureDef fixtureDef;
 	protected World world;
+	
+	protected Fixture fixture;
 	
 	protected Sprite sprite;
 	protected ArrayList<Texture> textures;

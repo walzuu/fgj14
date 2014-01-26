@@ -75,6 +75,8 @@ public class MapCreator {
 			}
 		}
 		
+		staticSprites.add(new Sky(-900f, 0f, 4500f, 1000f));
+		
 		for (int i = 0; i < 45; ++i) {
 			int type = MathUtils.random(0,4);
 			
