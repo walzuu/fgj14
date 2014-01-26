@@ -1,4 +1,4 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.gameobjects.dynamic;
 
 import com.badlogic.gdx.physics.box2d.World;
 

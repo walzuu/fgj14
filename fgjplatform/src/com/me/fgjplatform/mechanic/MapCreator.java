@@ -1,12 +1,23 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.mechanic;
 
 import java.util.ArrayList;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
+import com.me.fgjplatform.gameobjects.BaseObject;
+import com.me.fgjplatform.gameobjects.dynamic.AlienObject;
+import com.me.fgjplatform.gameobjects.dynamic.BaseRectDynamicObject;
+import com.me.fgjplatform.gameobjects.dynamic.CreatureObject;
+import com.me.fgjplatform.gameobjects.dynamic.RobotObject;
+import com.me.fgjplatform.gameobjects.staticobjects.Door;
+import com.me.fgjplatform.gameobjects.staticobjects.Ground;
+import com.me.fgjplatform.gameobjects.staticobjects.StaticObject;
+import com.me.fgjplatform.gameobjects.staticobjects.Tree;
+import com.me.fgjplatform.gameobjects.staticobjects.Water;
+import com.me.fgjplatform.staticsprites.Grass;
+import com.me.fgjplatform.staticsprites.Sky;
+import com.me.fgjplatform.staticsprites.StaticSprite;
 
 public class MapCreator {
 	private static final float spawnGrassFrequency = 2.0f;
@@ -32,15 +43,12 @@ public class MapCreator {
 		initStaticObjects();
 		initDynamicObjects();
 		initStaticSprites();
-		
-		TiledMap tileMap = new TiledMap();
-		
 	}
 	
 	private void initDynamicObjects() {
 		// player characters
 		creatureObjects.add(new AlienObject(100f, 10f + 50f, 64f, 100f,this.world));
-		creatureObjects.add(new RobotObject(400f, 10f + 25f, 20f, 50f,this.world));
+		creatureObjects.add(new RobotObject(400f, 10f + 25f, 50f, 50f,this.world));
 		
 		rectDynamicObjects.add(new BaseRectDynamicObject(900f, 160f, 98f, 100f,this.world));
 		rectDynamicObjects.add(new BaseRectDynamicObject(900f, 60f, 98f, 100f,this.world));
@@ -75,11 +83,12 @@ public class MapCreator {
 			}
 		}
 		
+		staticSprites.add(new Sky(-900f, 0f, 4500f, 1000f));
+		
 		for (int i = 0; i < 45; ++i) {
 			int type = MathUtils.random(0,4);
 			
-			
-			if (MathUtils.random(0.0f,spawnGrassFrequency) < 1.0f) {
+			if (MathUtils.random(0.0f,spawnGrassFrequency) < 1.0f && i!= 20 && i!= 22 && i!=24) {
 				staticSprites.add(new Grass(-900f+i*100f, 0f, 100f, 100f, type));
 			}
 		}
@@ -137,7 +146,7 @@ public class MapCreator {
 	public void removeStaticObject(Body body) {
 		StaticObject objectToRemove = null;
 		for (StaticObject o : staticObjects) {
-			if (o.body == body) {
+			if (o.getBody() == body) {
 				objectToRemove = o;
 				break;
 			}

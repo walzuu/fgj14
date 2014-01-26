@@ -1,31 +1,34 @@
-package com.me.fgjplatform;
-
-import java.util.Iterator;
+package com.me.fgjplatform.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.me.fgjplatform.GameState;
+import com.me.fgjplatform.Global;
+import com.me.fgjplatform.gameobjects.BaseObject;
+import com.me.fgjplatform.gameobjects.dynamic.AlienObject;
+import com.me.fgjplatform.gameobjects.dynamic.CreatureObject;
+import com.me.fgjplatform.gameobjects.dynamic.RobotObject;
+import com.me.fgjplatform.mechanic.CollisionListener;
+import com.me.fgjplatform.mechanic.MapCreator;
+import com.me.fgjplatform.staticsprites.StaticSprite;
 
 public class GameScreen extends DefaultScreen implements InputProcessor  {
 
 	private static OrthographicCamera camera;
 	private SpriteBatch batch;
 	private Texture texture;
-	private Sprite sprite;
 	private static World world;
 	private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
 	private Body playerBody;
@@ -47,7 +50,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		camera = new OrthographicCamera();  
 		camera.viewportHeight = Global.HEIGHT;  
 		camera.viewportWidth = Global.WIDTH;    
-		camera.zoom = 1f;
+		camera.zoom = 7f;
 		
 		
 		player = mapCreator.getAlien();

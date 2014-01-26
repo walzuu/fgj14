@@ -1,6 +1,6 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.gameobjects.staticobjects;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class Tree extends StaticObject {
@@ -19,7 +19,12 @@ public class Tree extends StaticObject {
 	@Override
 	protected void initPhysicalBody() {
 		super.initPhysicalBody();
-		body.setUserData("tree");
+		Filter f = this.fixture.getFilterData();
+		f.maskBits = ~(0x0002); // I do not collide with (alien)
+		f.categoryBits = 0x0004;  // I am 
+		fixture.setFilterData(f);
+		
+		this.getBody().setUserData("tree");
 	}
 
 }

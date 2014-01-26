@@ -1,4 +1,4 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.gameobjects;
 
 import java.util.ArrayList;
 
@@ -8,33 +8,55 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.World;
 
-public class StaticSprite {
-	protected Sprite sprite;
-	protected ArrayList<Texture> textures;
+public class BaseObject {
+	protected float position_x;
+	protected float position_y;
 	
-	protected float posX;
-	protected float posY;
-	
-	protected float width;
+	protected float width;	
 	protected float height;
 	
-	public StaticSprite(float posX, float posY, float width, float height) {
-		this.posX = posX;
-		this.posY = posY;
+	protected BodyDef bodyDef;
+	private Body body;
+	protected FixtureDef fixtureDef;
+	protected World world;
+	
+	protected Fixture fixture;
+	
+	protected Sprite sprite;
+	protected ArrayList<Texture> textures;
+
+	// Constructor
+	public BaseObject(float x, float y, float width, float height,World world) {
+		this.position_x = x;
+		this.position_y = y;
+		
 		this.width = width;
 		this.height = height;
 		
+		this.world = world;		
+		
 		this.loadTextures();
-		this.sprite = this.loadSprite();
-		this.sprite.setPosition(posX, posY);
+		this.sprite = loadSprite();
+		
 	}
 	
-	public void draw(SpriteBatch batch) {
-		
-		this.sprite.draw(batch);
+	public void draw(SpriteBatch batch)
+	{
+		if (this.getBody() != null)
+		{
+			this.sprite.setPosition(this.getBody().getWorldCenter().x - this.sprite.getWidth()/2, 
+					this.getBody().getWorldCenter().y - this.sprite.getHeight()/2);
+			this.sprite.setRotation(this.getBody().getTransform().getRotation() / (float) Math.PI * 180);
+			this.sprite.draw(batch);
+		}
 	}
-
+	
 	// load the sprite:
 	public Sprite loadSprite() {
 		if (textures.size() > 0) {
@@ -84,4 +106,11 @@ public class StaticSprite {
 		
 	}
 
+	public Body getBody() {
+		return body;
+	}
+
+	public void setBody(Body body) {
+		this.body = body;
+	}
 }

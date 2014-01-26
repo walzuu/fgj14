@@ -1,58 +1,40 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.staticsprites;
 
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.World;
 
-public class BaseObject {
-	protected float position_x;
-	protected float position_y;
-	
-	protected float width;	
-	protected float height;
-	
-	protected BodyDef bodyDef;
-	protected Body body;
-	protected World world;
-	
+public class StaticSprite {
 	protected Sprite sprite;
 	protected ArrayList<Texture> textures;
-
-	// Constructor
-	public BaseObject(float x, float y, float width, float height,World world) {
-		this.position_x = x;
-		this.position_y = y;
-		
+	
+	protected float posX;
+	protected float posY;
+	
+	protected float width;
+	protected float height;
+	
+	public StaticSprite(float posX, float posY, float width, float height) {
+		this.posX = posX;
+		this.posY = posY;
 		this.width = width;
 		this.height = height;
 		
-		this.world = world;		
-		
 		this.loadTextures();
-		this.sprite = loadSprite();
+		this.sprite = this.loadSprite();
+		this.sprite.setPosition(posX, posY);
+	}
+	
+	public void draw(SpriteBatch batch) {
 		
+		this.sprite.draw(batch);
 	}
-	
-	public void draw(SpriteBatch batch)
-	{
-		if (this.body != null)
-		{
-			this.sprite.setPosition(this.body.getWorldCenter().x - this.sprite.getWidth()/2, 
-					this.body.getWorldCenter().y - this.sprite.getHeight()/2);
-			this.sprite.setRotation(this.body.getTransform().getRotation() / (float) Math.PI * 180);
-			this.sprite.draw(batch);
-		}
-	}
-	
+
 	// load the sprite:
 	public Sprite loadSprite() {
 		if (textures.size() > 0) {
@@ -101,4 +83,5 @@ public class BaseObject {
 		}
 		
 	}
+
 }

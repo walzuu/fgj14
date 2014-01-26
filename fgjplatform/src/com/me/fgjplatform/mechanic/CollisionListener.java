@@ -1,16 +1,17 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.mechanic;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.World;
+import com.me.fgjplatform.GameState;
 
 public class CollisionListener implements ContactListener {
 
+	@SuppressWarnings("unused")
 	private World world;
 	private GameState gameState;
 	private MapCreator mapCreator;
@@ -41,7 +42,11 @@ public class CollisionListener implements ContactListener {
 
 		if (userDataA == "tree" && 
 				(String)contact.getFixtureB().getUserData() == "forcefield") {
-			handleTreeRemoval(bodyA);
+			handleTreeFading(contact.getFixtureA());
+		}
+		
+		if (userDataA == "faded_tree" && userDataB == "robot") {
+			handleTreeFadingRobotOn(contact.getFixtureA());
 		}
 		
 		if (contact.getFixtureB().getUserData() == "feet") {
@@ -55,9 +60,25 @@ public class CollisionListener implements ContactListener {
 		}
 	}
 	
-	private void handleTreeRemoval(Body bodyA) {
-		mapCreator.removeStaticObject(bodyA);
-		bodyA.setUserData("dead");
+	private void handleTreeFading(Fixture fixtureTree) {
+		fixtureTree.getBody().setUserData("faded_tree");
+		fixtureTree.setSensor(true);
+	}
+	
+	private void handleTreeFadingRobotOn(Fixture fixtureTree) {
+		fixtureTree.getBody().setUserData("faded_tree_robot_on");
+		fixtureTree.setSensor(true);
+//		Filter filter = fixtureTree.getFilterData();
+//		filter.maskBits = ~(0x0002 | 0x0008); // I do not collide with alien and robot
+//		fixtureTree.setFilterData(filter);
+	}
+	
+	private void handleTreeFadeBack(Fixture fixtureTree) {
+		fixtureTree.getBody().setUserData("tree");
+		fixtureTree.setSensor(false);
+//		Filter filter = fixtureTree.getFilterData();
+//		filter.maskBits = ~(0x0002); // I do not collide with alien
+//		fixtureTree.setFilterData(filter);
 	}
 	
 	private void handleDoorCollision(Body bodyB) {
@@ -96,12 +117,35 @@ public class CollisionListener implements ContactListener {
 
 	@Override
 	public void endContact(Contact contact) {
-		//System.out.println("over "+contact);
+		Body bodyA = contact.getFixtureA().getBody();
+		Body bodyB = contact.getFixtureB().getBody();
+		Object userDataA = bodyA.getUserData();
+		Object userDataB = bodyB.getUserData();
+		
+		/*
+		if (userDataA != null && userDataB != null)
+			System.out.println(userDataA + " " + userDataB);
+		*/
+		if (userDataA == "faded_tree" && contact.getFixtureB().getUserData() == "forcefield") {
+			handleTreeFadeBack(contact.getFixtureA());
+		}
+		
+		if (userDataA == "faded_tree_robot_on" && userDataB == "robot") {
+			// handleTreeFadeBack(contact.getFixtureA()); ! - temporary bugged
+		}
 	}
 
 	@Override
 	public void preSolve(Contact contact, Manifold oldManifold) {
-		//System.out.println("pre "+contact);
+		Body bodyA = contact.getFixtureA().getBody();
+		Body bodyB = contact.getFixtureB().getBody();
+		Object userDataA = bodyA.getUserData();
+		Object userDataB = bodyB.getUserData();
+		
+		if (userDataA == "faded_tree_robot_on" && userDataB == "robot") {
+			//handleTreeFadeBack(contact.getFixtureA());
+			System.out.println("handling");
+		}
 	}
 
 	@Override

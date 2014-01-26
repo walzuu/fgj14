@@ -1,4 +1,4 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Screen;

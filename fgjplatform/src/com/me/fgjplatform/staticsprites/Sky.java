@@ -1,4 +1,4 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.staticsprites;
 
 public class Sky extends StaticSprite {
 
@@ -9,7 +9,7 @@ public class Sky extends StaticSprite {
 	@Override
 	public void loadTextures() {
 		// TODO Auto-generated method stub
-		super.loadTextures("data/test.png", "data/test2.png");
+		super.loadTextures("data/background.png", "data/background_robot.png");
 	}
 
 }
