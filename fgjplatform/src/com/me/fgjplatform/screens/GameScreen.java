@@ -131,6 +131,49 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 	public void updateTargetPos(CreatureObject creature) {
 		if (creature != null) {
 			player = creature;
+			if (creature.getClass() == AlienObject.class) {
+				
+				player = mapCreator.getAlien();
+				((CreatureObject)player).transformation();
+				
+				for (StaticSprite ss: mapCreator.getStaticSprites()) {
+					ss.changeTexture(0);
+				}
+				
+				for (BaseObject o: mapCreator.getCreatureObjects()) {
+					o.changeTexture(0);
+				}
+				
+				for (BaseObject o: mapCreator.getRectDynamicObjects()) {
+					o.changeTexture(0);
+				}
+				
+				for (BaseObject o: mapCreator.getStaticObjects()) {
+					o.changeTexture(0);
+				}
+			}
+			
+			else {
+				
+				player = mapCreator.getRobot();
+				((CreatureObject)player).transformation();
+				
+				for (StaticSprite ss: mapCreator.getStaticSprites()) {
+					ss.changeTexture(1);
+				}
+				
+				for (BaseObject o: mapCreator.getCreatureObjects()) {
+					o.changeTexture(1);
+				}
+				
+				for (BaseObject o: mapCreator.getRectDynamicObjects()) {
+					o.changeTexture(1);
+				}
+				
+				for (BaseObject o: mapCreator.getStaticObjects()) {
+					o.changeTexture(1);
+				}
+			}
 		}
 	}
 	
