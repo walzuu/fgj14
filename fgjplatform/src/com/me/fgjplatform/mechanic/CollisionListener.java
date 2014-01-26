@@ -79,7 +79,7 @@ public class CollisionListener implements ContactListener {
 	
 	private void handleTreeFadingRobotOn(Fixture fixtureTree) {
 		fixtureTree.getBody().setUserData("faded_tree_robot_on");
-		fixtureTree.setSensor(true);
+		//fixtureTree.setSensor(true);
 //		Filter filter = fixtureTree.getFilterData();
 //		filter.maskBits = ~(0x0002 | 0x0008); // I do not collide with alien and robot
 //		fixtureTree.setFilterData(filter);
