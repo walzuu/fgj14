@@ -2,8 +2,6 @@ package com.me.fgjplatform.mechanic;
 
 import java.util.ArrayList;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
@@ -45,9 +43,6 @@ public class MapCreator {
 		initStaticObjects();
 		initDynamicObjects();
 		initStaticSprites();
-		
-		TiledMap tileMap = new TiledMap();
-		
 	}
 	
 	private void initDynamicObjects() {

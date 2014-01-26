@@ -1,10 +1,5 @@
 package com.me.fgjplatform.staticsprites;
 
-import java.util.ArrayList;
-
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.Texture.TextureFilter;
 
 public class Grass extends StaticSprite {
 	

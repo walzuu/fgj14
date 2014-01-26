@@ -1,6 +1,5 @@
 package com.me.fgjplatform.gameobjects.dynamic;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.World;
 
