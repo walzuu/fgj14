@@ -2,16 +2,12 @@ package com.me.fgjplatform.gameobjects.dynamic;
 
 import com.badlogic.gdx.physics.box2d.Filter;
 import com.badlogic.gdx.physics.box2d.World;
+import com.me.fgjplatform.Global;
 
 public class RobotObject extends CreatureObject {
 	public RobotObject(float x, float y, float width, float height, World world) {
 		super(x, y, width, height,world, "data/robot.png", 4, 4);
 	}
-	
-	//@Override
-//	public Sprite loadSprite() {
-//		return super.loadSprite("data/robot.png", "data/robot.png");
-//	}
 	
 	@Override
 	public void loadTextures() {
@@ -23,8 +19,8 @@ public class RobotObject extends CreatureObject {
 		super.initPhysicalBody();
 		
 		Filter filter = fixture.getFilterData();
-		filter.maskBits = ~(0x0002); // I do not collide with:
-		filter.categoryBits = 0x0008;  // I am
+		filter.maskBits = ~(Global.CATEGORY_ALIEN); // I do not collide with
+		filter.categoryBits = Global.CATEGORY_ROBOT;  // I am robot
 		fixture.setFilterData(filter);
 		
 		getBody().setUserData("robot");

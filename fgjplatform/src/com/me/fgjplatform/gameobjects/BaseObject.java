@@ -22,7 +22,7 @@ public class BaseObject {
 	protected float height;
 	
 	protected BodyDef bodyDef;
-	private Body body;
+	protected Body body;
 	protected FixtureDef fixtureDef;
 	protected World world;
 	
