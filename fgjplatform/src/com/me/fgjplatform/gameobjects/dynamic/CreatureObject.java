@@ -21,7 +21,7 @@ public class CreatureObject extends BaseObject {
 	protected FixtureDef fixtureSensorFeet;
 	
 	public CreatureObject(float x, float y, float width, float height,World world,
-			String walkfile, int columns, int rows) 
+			String walkfile, int columns, int rows, int skippedrows) 
 	{
 		super(x, y, width, height,world);
 		initPhysicalBody();
@@ -29,7 +29,7 @@ public class CreatureObject extends BaseObject {
 		moving = false;
 		facingLeft = false;
 		anim = new Animator();
-		anim.create(walkfile, columns, rows);
+		anim.create(walkfile, columns, rows, skippedrows);
 	}
 	
 

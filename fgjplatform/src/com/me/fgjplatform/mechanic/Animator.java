@@ -22,16 +22,16 @@ public class Animator
     boolean flipped;
     float stateTime;                                        // #8
     
-    public void create(String aName, int columns, int rows)
+    public void create(String aName, int columns, int rows, int skippedRows)
     {
     	//columns = 4;
     	//rows = 4;
             walkSheet = new Texture(Gdx.files.internal(aName));     // #9
             TextureRegion[][] tmp = TextureRegion.split(walkSheet, walkSheet.getWidth()/ 
 columns, walkSheet.getHeight() / rows);
-            walkFrames = new TextureRegion[columns * rows];
+            walkFrames = new TextureRegion[columns * (rows-skippedRows)];
             int index = 0;
-            for (int i = 0; i < rows; i++) {
+            for (int i = 0; i < rows - skippedRows; i++) {
                     for (int j = 0; j < columns; j++) {
                             walkFrames[index++] = tmp[i][j];
                     }
