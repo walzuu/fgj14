@@ -113,7 +113,6 @@ public class CreatureObject extends BaseObject {
 	}
 	public void transformation()
 	{
-		facingLeft = false;
 		
 		if(!robot_)
 		{
@@ -121,6 +120,8 @@ public class CreatureObject extends BaseObject {
 		{
 			walk_anim.create("data/Alien_Walking_POT.png", 4, 4, 1);
 			idle_anim.create("data/Alien_Idle.png", 4, 1, 0);
+
+				
 		}
 		else
 		{
@@ -142,6 +143,13 @@ public class CreatureObject extends BaseObject {
 			}
 			
 		}
+		
+		if(facingLeft)
+		{
+			idle_anim.flip();
+			walk_anim.flip();
+		}
+		//facingLeft = false;
 		
 		
 		human = !human;
