@@ -6,7 +6,7 @@ import com.me.fgjplatform.Global;
 
 public class RobotObject extends CreatureObject {
 	public RobotObject(float x, float y, float width, float height, World world) {
-		super(x, y, width, height,world, "data/robot.png", 4, 4);
+		super(x, y, width, height,world, "data/robot.png", 1, 1, 0);
 	}
 	
 	@Override
