@@ -103,7 +103,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		
 		batch.end();
 		updateCamera(delta);
-		debugRenderer.render(world, camera.combined);
+		//debugRenderer.render(world, camera.combined);
 		world.step(1/60f, 6, 2);
 		sweepDeadBodies();
 	}
