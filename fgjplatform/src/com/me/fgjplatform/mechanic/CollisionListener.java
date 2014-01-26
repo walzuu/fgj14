@@ -49,6 +49,18 @@ public class CollisionListener implements ContactListener {
 			handleTreeFadingRobotOn(contact.getFixtureA());
 		}
 		
+		if (userDataA == "tree") {
+			System.out.println("found tree contact");
+		}
+		
+		if (userDataA == "faded_tree_robot_on contact") {
+			System.out.println("found faded_tree_robot_on");
+		}
+		
+		if (userDataA == "faded_tree") {
+			System.out.println("found faded_tree contact");
+		}
+		
 		if (contact.getFixtureB().getUserData() == "feet") {
 			if (bodyB.getUserData() == "alien") {
 				mapCreator.getAlien().resetJump();
@@ -74,8 +86,12 @@ public class CollisionListener implements ContactListener {
 	}
 	
 	private void handleTreeFadeBack(Fixture fixtureTree) {
+		try {
 		fixtureTree.getBody().setUserData("tree");
 		fixtureTree.setSensor(false);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 //		Filter filter = fixtureTree.getFilterData();
 //		filter.maskBits = ~(0x0002); // I do not collide with alien
 //		fixtureTree.setFilterData(filter);
@@ -123,17 +139,25 @@ public class CollisionListener implements ContactListener {
 			Object userDataA = bodyA.getUserData();
 			Object userDataB = bodyB.getUserData();
 			
+			if (userDataA == "faded_tree_robot_on") {
+				System.out.println("found faded_tree_robot_on");
+			}
+			
 			/*
 			if (userDataA != null && userDataB != null)
 				System.out.println(userDataA + " " + userDataB);
 			*/
 			if (userDataA == "faded_tree" && contact.getFixtureB().getUserData() == "forcefield") {
 				handleTreeFadeBack(contact.getFixtureA());
+				System.out.println("handle faded tree");
 			}
 			
 			if (userDataA == "faded_tree_robot_on" && userDataB == "robot") {
-				// handleTreeFadeBack(contact.getFixtureA()); ! - temporary bugged
+				handleTreeFadeBack(contact.getFixtureA()); // ! - temporary bugged
+				System.out.println("handle tree fadeback");
 			}
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -141,15 +165,6 @@ public class CollisionListener implements ContactListener {
 
 	@Override
 	public void preSolve(Contact contact, Manifold oldManifold) {
-		Body bodyA = contact.getFixtureA().getBody();
-		Body bodyB = contact.getFixtureB().getBody();
-		Object userDataA = bodyA.getUserData();
-		Object userDataB = bodyB.getUserData();
-		
-		if (userDataA == "faded_tree_robot_on" && userDataB == "robot") {
-			//handleTreeFadeBack(contact.getFixtureA());
-			System.out.println("handling");
-		}
 	}
 
 	@Override
