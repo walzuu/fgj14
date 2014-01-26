@@ -89,6 +89,9 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		
 		musics.get(0).setVolume(1f);
 		musics.get(0).play();
+		
+		musics.get(1).setVolume(0f);
+		musics.get(1).play();
 	}
 
 	@Override
@@ -270,8 +273,8 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 						o.changeTexture(0);
 					}
 					
-					musics.get(1).pause();
-					musics.get(0).play();
+					musics.get(1).setVolume(0f);
+					musics.get(0).setVolume(1f);
 				}
 			}
 			
@@ -301,8 +304,8 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 						o.changeTexture(1);
 					}
 					
-					musics.get(0).pause();
-					musics.get(1).play();
+					musics.get(1).setVolume(1f);
+					musics.get(0).setVolume(0f);
 				}
 			}
 		}
