@@ -24,7 +24,8 @@ public class Door extends StaticObject {
         setBody(world.createBody(bodyDef));
         
         PolygonShape groundBox = new PolygonShape();  
-        groundBox.setAsBox(width/2, height/2);  
+        groundBox.set(new Vector2[] { new Vector2(-width/4, height/3), new Vector2(width/4, height/3), 
+        							new Vector2(-width/4, -height/3), new Vector2(width/4, -height/3) });
         Fixture fix = getBody().createFixture(groundBox, 0.0f);
         fix.setSensor(true);
         
