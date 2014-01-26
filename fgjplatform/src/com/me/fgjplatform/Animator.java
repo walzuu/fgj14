@@ -12,8 +12,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Animator
 {
 	
-    private static final int        FRAME_COLS = 3;         // #1
-    private static final int        FRAME_ROWS = 1;         // #2
+    //private static final int        FRAME_COLS = 3;         // #1
+    //private static final int        FRAME_ROWS = 1;         // #2
     
     Animation                       walkAnimation;          // #3
     Texture                         walkSheet;              // #4
@@ -23,15 +23,17 @@ public class Animator
     
     float stateTime;                                        // #8
     
-    public void create(String aName, int columns, int frames) 
+    public void create(String aName, int columns, int rows)
     {
+    	//columns = 4;
+    	//rows = 4;
             walkSheet = new Texture(Gdx.files.internal(aName));     // #9
-            TextureRegion[][] tmp = TextureRegion.split(walkSheet, walkSheet.getWidth() / 
-frames, walkSheet.getHeight() / FRAME_ROWS);
-            walkFrames = new TextureRegion[frames * FRAME_ROWS];
+            TextureRegion[][] tmp = TextureRegion.split(walkSheet, walkSheet.getWidth()/ 
+columns, walkSheet.getHeight() / rows);
+            walkFrames = new TextureRegion[columns * rows];
             int index = 0;
-            for (int i = 0; i < FRAME_ROWS; i++) {
-                    for (int j = 0; j < frames; j++) {
+            for (int i = 0; i < rows; i++) {
+                    for (int j = 0; j < columns; j++) {
                             walkFrames[index++] = tmp[i][j];
                     }
             }

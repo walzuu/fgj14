@@ -13,7 +13,7 @@ public class AlienObject extends CreatureObject {
 	
 	public AlienObject(float x, float y, float width, float height, World world) 
 	{
-		super(x, y, width, height,world, "data/Human.png", 4, 3);
+		super(x, y, width, height,world, "data/Human_Walking_POT.png", 4, 4);
 	}
 	
 	@Override
