@@ -36,7 +36,7 @@ columns, walkSheet.getHeight() / rows);
                             walkFrames[index++] = tmp[i][j];
                     }
             }
-            walkAnimation = new Animation(0.1f, walkFrames);              // #11
+            walkAnimation = new Animation(0.2f, walkFrames);              // #11
       //      spriteBatch = new SpriteBatch();                                // #12
             stateTime = 0f;                                                 // #13
             flipped = false;

@@ -13,7 +13,8 @@ public class AlienObject extends CreatureObject {
 	
 	public AlienObject(float x, float y, float width, float height, World world) 
 	{
-		super(x, y, width, height,world, "data/Human_Walking_POT.png", 4, 4, 1);
+		super(x, y, width, height,world, "data/Human_Walking_POT.png", 4, 4, 1,
+				"data/Human_Idle.png", 4, 1, 0, false);
 	}
 	
 	@Override
@@ -42,6 +43,7 @@ public class AlienObject extends CreatureObject {
 	}
 	
 	public void switchForceField(boolean isFieldOn) {
+		//super.transformation();
 		if (this.forceFieldFixture != null) {
 			Vector2[] verticesOn = { new Vector2(-width,-height/2f), new Vector2(width,-height/2f), 
 	        		new Vector2(width,height), new Vector2(-width, height) };

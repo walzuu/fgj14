@@ -72,9 +72,9 @@ public class MapCreator {
 			staticObjects.add(new Ground(1450f + i*100f, -90f + 50f, 100f, 100f, this.world, true));
 		}
 
-		staticObjects.add(new Tree(200f + 100f, 10f + 100f, 100f, 200f, this.world));
-		staticObjects.add(new Tree(700f + 50f, 10f + 100f, 100f, 200f, this.world));
-		staticObjects.add(new Door(1500f + 25f, 10f + 50f, 50f, 100f, this.world));
+		staticObjects.add(new Tree(200f + 100f, 110f, 100f, 200f, this.world));
+		staticObjects.add(new Tree(700f, 110f, 100f, 200f, this.world));
+		staticObjects.add(new Door(1500f + 25f, 10f + 50f, 100f, 200f, this.world));
 	}
 	
 	private void initStaticSprites() {

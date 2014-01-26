@@ -71,10 +71,9 @@ public class CollisionListener implements ContactListener {
 	private void handleTreeFading(Fixture fixtureTree) {
 
 		fixtureTree.getBody().setUserData("faded_tree");
-
-
-		Vector2[] vertices = { new Vector2(-50,0), new Vector2(-50,1), 
-				new Vector2(50,1), new Vector2(50,0)};
+		
+		Vector2[] vertices = { new Vector2(-50,30), new Vector2(-50,31), 
+				new Vector2(50,31), new Vector2(50,30)};
 		((PolygonShape)fixtureTree.getShape()).set(vertices);
 		isTreeFaded = true;
 
@@ -84,8 +83,8 @@ public class CollisionListener implements ContactListener {
 
 		fixtureTree.getBody().setUserData("faded_tree_robot_on");
 
-		Vector2[] vertices = { new Vector2(-50,-50), new Vector2(-50,-51), 
-				new Vector2(50,-51), new Vector2(50,-50)};
+		Vector2[] vertices = { new Vector2(-50,30), new Vector2(-50,31), 
+				new Vector2(50,31), new Vector2(50,30)};
 		((PolygonShape)fixtureTree.getShape()).set(vertices);
 
 	}
@@ -99,6 +98,7 @@ public class CollisionListener implements ContactListener {
 		((PolygonShape)fixtureTree.getShape()).setAsBox(50f, 100f);
 
 		isTreeFaded = false;
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -160,10 +160,12 @@ public class CollisionListener implements ContactListener {
 			}
 			
 			if (userDataA == "faded_tree_robot_on" && userDataB == "robot") {
+
 				if (!isTreeFaded) {
 					handleTreeFadeBack(contact.getFixtureA());
 
 				}
+
 			}
 			
 			

@@ -172,7 +172,10 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 				if (mapCreator.getAlien() != null) {
 					player.move(0f);
 					player.resetMove();
+					((CreatureObject)player).transformation();
+					
 					player = mapCreator.getAlien();
+					((CreatureObject)player).transformation();
 					((AlienObject)player).switchForceField(false);
 					
 					for (StaticSprite ss: mapCreator.getStaticSprites()) {
@@ -198,8 +201,11 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 					((AlienObject)player).switchForceField(true);
 					player.move(0f);
 					player.resetMove();
+					((CreatureObject)player).transformation();
+					
 					player = mapCreator.getRobot();
-
+					((CreatureObject)player).transformation();
+					
 					for (StaticSprite ss: mapCreator.getStaticSprites()) {
 						ss.changeTexture(1);
 					}

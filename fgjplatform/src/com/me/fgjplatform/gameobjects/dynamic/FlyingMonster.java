@@ -5,7 +5,8 @@ import com.badlogic.gdx.physics.box2d.World;
 public class FlyingMonster extends CreatureObject {
 	public FlyingMonster(float x, float y, float width, float height,
 			World world) {
-		super(x, y, width, height, world, "data/flying_monster_ss.png", 2, 1, 0);
+		super(x, y, width, height, world, "data/flying_monster_ss.png", 2, 1, 0,
+		                           		  "data/flying_monster_ss.png", 2, 1, 0, false);
 	}
 	
 }
