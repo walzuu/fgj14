@@ -19,7 +19,7 @@ public class Animator
     TextureRegion[]                 walkFrames;             // #5
     //SpriteBatch                     spriteBatch;            // #6
     TextureRegion                   currentFrame;           // #7
-    
+    boolean flipped;
     float stateTime;                                        // #8
     
     public void create(String aName, int columns, int rows)
@@ -39,12 +39,12 @@ columns, walkSheet.getHeight() / rows);
             walkAnimation = new Animation(0.1f, walkFrames);              // #11
       //      spriteBatch = new SpriteBatch();                                // #12
             stateTime = 0f;                                                 // #13
+            flipped = false;
     }
     
     public void flip()
     {
-        currentFrame = walkAnimation.getKeyFrame(stateTime, true);      // #16
-        currentFrame.flip(true, false);
+    	flipped = !flipped;
     }
 
     public void render(SpriteBatch batch, int x, int y, float width, float height) 
@@ -52,17 +52,29 @@ columns, walkSheet.getHeight() / rows);
             //Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);                                            // #14
             stateTime += Gdx.graphics.getDeltaTime();                       // #15
             currentFrame = walkAnimation.getKeyFrame(stateTime, true);      // #16
-
+           
+            //if( flipped ) 
+            //{
+            //    if( currentFrame.getRegionWidth() > 0 ) 
+            //    	currentFrame.flip( true, false );
+            //}
+            //else if( currentFrame.getRegionWidth() < 0 )
+            //{
+            //    	currentFrame.flip( true, false );
+            //}
+            
+            
             Sprite sprite = new Sprite();
             sprite.setRegion(currentFrame);
             sprite.setBounds(0, 0, width, height);
             //spriteBatch.begin();
             sprite.setPosition(x-width/2, y-height/2);
+            if(flipped)
+            	sprite.flip(true, false);
+            
             sprite.draw(batch);
             //batch.draw(sprite, x, y);                         // #17
             
             //spriteBatch.end();
     }
-
-
 }
