@@ -117,21 +117,25 @@ public class CollisionListener implements ContactListener {
 
 	@Override
 	public void endContact(Contact contact) {
-		Body bodyA = contact.getFixtureA().getBody();
-		Body bodyB = contact.getFixtureB().getBody();
-		Object userDataA = bodyA.getUserData();
-		Object userDataB = bodyB.getUserData();
-		
-		/*
-		if (userDataA != null && userDataB != null)
-			System.out.println(userDataA + " " + userDataB);
-		*/
-		if (userDataA == "faded_tree" && contact.getFixtureB().getUserData() == "forcefield") {
-			handleTreeFadeBack(contact.getFixtureA());
-		}
-		
-		if (userDataA == "faded_tree_robot_on" && userDataB == "robot") {
-			// handleTreeFadeBack(contact.getFixtureA()); ! - temporary bugged
+		try {
+			Body bodyA = contact.getFixtureA().getBody();
+			Body bodyB = contact.getFixtureB().getBody();
+			Object userDataA = bodyA.getUserData();
+			Object userDataB = bodyB.getUserData();
+			
+			/*
+			if (userDataA != null && userDataB != null)
+				System.out.println(userDataA + " " + userDataB);
+			*/
+			if (userDataA == "faded_tree" && contact.getFixtureB().getUserData() == "forcefield") {
+				handleTreeFadeBack(contact.getFixtureA());
+			}
+			
+			if (userDataA == "faded_tree_robot_on" && userDataB == "robot") {
+				// handleTreeFadeBack(contact.getFixtureA()); ! - temporary bugged
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

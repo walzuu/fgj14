@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.me.fgjplatform.Global;
 
 public class AlienObject extends CreatureObject {
 	private Fixture forceFieldFixture;
@@ -23,8 +24,8 @@ public class AlienObject extends CreatureObject {
 	protected void initPhysicalBody() {
 		super.initPhysicalBody();
 		Filter filter = fixture.getFilterData();
-		filter.maskBits = ~(0x0008 | 0x0004); // I do not collide with:
-		filter.categoryBits = 0x0002;  // I am
+		filter.maskBits = ~(Global.CATEGORY_ROBOT | Global.CATEGORY_TREE); // I do not collide with:
+		filter.categoryBits = Global.CATEGORY_ALIEN;  // I am
 		fixture.setFilterData(filter);
 		
 		FixtureDef fixtureSensor = new FixtureDef();
