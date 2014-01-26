@@ -38,6 +38,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 	static final int BOX_VELOCITY_ITERATIONS=6;  
 	static final int BOX_POSITION_ITERATIONS=2; 
 	private Vector3 targetPos;
+	private HUD hud;
 
 	private MapCreator mapCreator;
 
@@ -66,7 +67,9 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		// CollisionListener calls proper functions when user collides with
 		// a special object
 		gameState = new GameState(world);
-		world.setContactListener(new CollisionListener(world, gameState, mapCreator));
+		world.setContactListener(new CollisionListener(world, gameState, mapCreator, this));
+		
+		hud = new HUD(camera);
 	}
 
 	@Override
@@ -101,6 +104,8 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 			o.draw(batch);
 		}
 		
+		//hud.draw(batch);
+		
 		batch.end();
 		updateCamera(delta);
 		//debugRenderer.render(world, camera.combined);
@@ -120,6 +125,12 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 				System.out.println("YOU LOSE!");
 				break;
 			}
+		}
+	}
+	
+	public void updateTargetPos(CreatureObject creature) {
+		if (creature != null) {
+			player = creature;
 		}
 	}
 	
