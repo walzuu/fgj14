@@ -40,7 +40,7 @@ public class MapCreator {
 	private void initDynamicObjects() {
 		// player characters
 		creatureObjects.add(new AlienObject(100f, 10f + 50f, 64f, 100f,this.world));
-		creatureObjects.add(new RobotObject(400f, 10f + 25f, 20f, 50f,this.world));
+		creatureObjects.add(new RobotObject(400f, 10f + 25f, 50f, 50f,this.world));
 		
 		rectDynamicObjects.add(new BaseRectDynamicObject(900f, 160f, 98f, 100f,this.world));
 		rectDynamicObjects.add(new BaseRectDynamicObject(900f, 60f, 98f, 100f,this.world));
@@ -78,8 +78,7 @@ public class MapCreator {
 		for (int i = 0; i < 45; ++i) {
 			int type = MathUtils.random(0,4);
 			
-			
-			if (MathUtils.random(0.0f,spawnGrassFrequency) < 1.0f) {
+			if (MathUtils.random(0.0f,spawnGrassFrequency) < 1.0f && i!= 20 && i!= 22 && i!=24) {
 				staticSprites.add(new Grass(-900f+i*100f, 0f, 100f, 100f, type));
 			}
 		}
