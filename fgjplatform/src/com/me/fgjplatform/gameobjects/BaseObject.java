@@ -1,4 +1,4 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.gameobjects;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,7 @@ public class BaseObject {
 	protected float height;
 	
 	protected BodyDef bodyDef;
-	protected Body body;
+	private Body body;
 	protected FixtureDef fixtureDef;
 	protected World world;
 	
@@ -49,11 +49,11 @@ public class BaseObject {
 	
 	public void draw(SpriteBatch batch)
 	{
-		if (this.body != null)
+		if (this.getBody() != null)
 		{
-			this.sprite.setPosition(this.body.getWorldCenter().x - this.sprite.getWidth()/2, 
-					this.body.getWorldCenter().y - this.sprite.getHeight()/2);
-			this.sprite.setRotation(this.body.getTransform().getRotation() / (float) Math.PI * 180);
+			this.sprite.setPosition(this.getBody().getWorldCenter().x - this.sprite.getWidth()/2, 
+					this.getBody().getWorldCenter().y - this.sprite.getHeight()/2);
+			this.sprite.setRotation(this.getBody().getTransform().getRotation() / (float) Math.PI * 180);
 			this.sprite.draw(batch);
 		}
 	}
@@ -105,5 +105,13 @@ public class BaseObject {
 			this.sprite.setTexture(textures.get(textureId));
 		}
 		
+	}
+
+	public Body getBody() {
+		return body;
+	}
+
+	public void setBody(Body body) {
+		this.body = body;
 	}
 }

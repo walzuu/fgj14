@@ -1,4 +1,4 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.staticsprites;
 
 public class Sky extends StaticSprite {
 

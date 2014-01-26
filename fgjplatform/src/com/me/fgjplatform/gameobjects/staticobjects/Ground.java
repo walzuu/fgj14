@@ -1,4 +1,4 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.gameobjects.staticobjects;
 
 import java.util.ArrayList;
 

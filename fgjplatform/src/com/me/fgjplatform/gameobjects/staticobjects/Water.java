@@ -1,4 +1,4 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.gameobjects.staticobjects;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.me.fgjplatform.mechanic.Animator;
 
 public class Water extends StaticObject{
 
@@ -21,20 +22,20 @@ public class Water extends StaticObject{
 	@Override
 	public void draw(SpriteBatch batch)
 	{
-		a.render(batch,(int)(this.body.getWorldCenter().x), 
-				(int)(this.body.getWorldCenter().y), width, height);
+		a.render(batch,(int)(this.getBody().getWorldCenter().x), 
+				(int)(this.getBody().getWorldCenter().y), width, height);
 	}
 	
 	@Override
 	protected void initPhysicalBody() {
 		bodyDef = new BodyDef();  
         bodyDef.position.set(new Vector2(position_x,position_y));  
-        body = world.createBody(bodyDef);  
+        setBody(world.createBody(bodyDef));  
         PolygonShape groundBox = new PolygonShape();  
         groundBox.setAsBox(width/2, height/2);  
-        Fixture fixture = body.createFixture(groundBox, 0.0f);
+        Fixture fixture = getBody().createFixture(groundBox, 0.0f);
         fixture.setSensor(true);
-        body.setUserData("water");
+        getBody().setUserData("water");
 	}
 	
 	@Override

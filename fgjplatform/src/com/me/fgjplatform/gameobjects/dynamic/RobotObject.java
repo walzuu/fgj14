@@ -1,4 +1,4 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.gameobjects.dynamic;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.physics.box2d.Filter;
@@ -28,6 +28,6 @@ public class RobotObject extends CreatureObject {
 		filter.categoryBits = 0x0008;  // I am
 		fixture.setFilterData(filter);
 		
-		body.setUserData("robot");
+		getBody().setUserData("robot");
 	}
 }

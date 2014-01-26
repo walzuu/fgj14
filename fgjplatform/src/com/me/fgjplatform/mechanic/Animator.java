@@ -1,4 +1,4 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.mechanic;
 
 
 import com.badlogic.gdx.Gdx;

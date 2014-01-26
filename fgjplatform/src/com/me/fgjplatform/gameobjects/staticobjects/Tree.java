@@ -1,4 +1,4 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.gameobjects.staticobjects;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -28,7 +28,7 @@ public class Tree extends StaticObject {
 		f.categoryBits = 0x0004;  // I am 
 		fixture.setFilterData(f);
 		
-		this.body.setUserData("tree");
+		this.getBody().setUserData("tree");
 	}
 
 }

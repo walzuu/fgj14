@@ -1,4 +1,4 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.gameobjects.staticobjects;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -25,14 +25,14 @@ public class Door extends StaticObject {
 	protected void initPhysicalBody() {
 		bodyDef = new BodyDef();  
         bodyDef.position.set(new Vector2(position_x,position_y));  
-        body = world.createBody(bodyDef);
+        setBody(world.createBody(bodyDef));
         
         PolygonShape groundBox = new PolygonShape();  
         groundBox.setAsBox(width/2, height/2);  
-        Fixture fix = body.createFixture(groundBox, 0.0f);
+        Fixture fix = getBody().createFixture(groundBox, 0.0f);
         fix.setSensor(true);
         
-        body.setUserData("door");
+        getBody().setUserData("door");
 	}
 	
 }

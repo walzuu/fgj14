@@ -1,4 +1,4 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.staticsprites;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.gameobjects.dynamic;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -35,9 +35,9 @@ public class AlienObject extends CreatureObject {
         sensorShape.set(vertices);
         fixtureSensor.shape = sensorShape;
         fixtureSensor.isSensor = true;
-        this.forceFieldFixture = body.createFixture(fixtureSensor);
+        this.forceFieldFixture = getBody().createFixture(fixtureSensor);
         this.forceFieldFixture.setUserData("forcefield");
-		body.setUserData("alien");
+		getBody().setUserData("alien");
 	}
 	
 	public void switchForceField(boolean isFieldOn) {

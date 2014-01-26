@@ -1,4 +1,4 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.mechanic;
 
 import java.util.ArrayList;
 
@@ -7,6 +7,19 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
+import com.me.fgjplatform.gameobjects.BaseObject;
+import com.me.fgjplatform.gameobjects.dynamic.AlienObject;
+import com.me.fgjplatform.gameobjects.dynamic.BaseRectDynamicObject;
+import com.me.fgjplatform.gameobjects.dynamic.CreatureObject;
+import com.me.fgjplatform.gameobjects.dynamic.RobotObject;
+import com.me.fgjplatform.gameobjects.staticobjects.Door;
+import com.me.fgjplatform.gameobjects.staticobjects.Ground;
+import com.me.fgjplatform.gameobjects.staticobjects.StaticObject;
+import com.me.fgjplatform.gameobjects.staticobjects.Tree;
+import com.me.fgjplatform.gameobjects.staticobjects.Water;
+import com.me.fgjplatform.staticsprites.Grass;
+import com.me.fgjplatform.staticsprites.Sky;
+import com.me.fgjplatform.staticsprites.StaticSprite;
 
 public class MapCreator {
 	private static final float spawnGrassFrequency = 2.0f;
@@ -138,7 +151,7 @@ public class MapCreator {
 	public void removeStaticObject(Body body) {
 		StaticObject objectToRemove = null;
 		for (StaticObject o : staticObjects) {
-			if (o.body == body) {
+			if (o.getBody() == body) {
 				objectToRemove = o;
 				break;
 			}

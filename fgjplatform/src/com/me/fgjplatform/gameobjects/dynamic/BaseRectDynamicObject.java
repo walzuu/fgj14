@@ -1,4 +1,4 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.gameobjects.dynamic;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.World;
+import com.me.fgjplatform.gameobjects.BaseObject;
 
 public class BaseRectDynamicObject extends BaseObject {
 
@@ -25,11 +26,11 @@ public class BaseRectDynamicObject extends BaseObject {
 		bodyDef.type = BodyType.DynamicBody;
 		bodyDef.position.set(position_x, position_y);
 		
-		body = world.createBody(bodyDef);
-		body.setFixedRotation(true);
+		setBody(world.createBody(bodyDef));
+		getBody().setFixedRotation(true);
 		PolygonShape bodyShape = new PolygonShape();
 		bodyShape.setAsBox(width/2, height/2);
 		
-		this.fixture = body.createFixture(bodyShape, 1.0f);
+		this.fixture = getBody().createFixture(bodyShape, 1.0f);
 	}
 }

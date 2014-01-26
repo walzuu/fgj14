@@ -1,4 +1,4 @@
-package com.me.fgjplatform;
+package com.me.fgjplatform.screens;
 
 import java.util.Iterator;
 
@@ -19,6 +19,16 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.me.fgjplatform.GameState;
+import com.me.fgjplatform.Global;
+import com.me.fgjplatform.Global.GameEnding;
+import com.me.fgjplatform.gameobjects.BaseObject;
+import com.me.fgjplatform.gameobjects.dynamic.AlienObject;
+import com.me.fgjplatform.gameobjects.dynamic.CreatureObject;
+import com.me.fgjplatform.gameobjects.dynamic.RobotObject;
+import com.me.fgjplatform.mechanic.CollisionListener;
+import com.me.fgjplatform.mechanic.MapCreator;
+import com.me.fgjplatform.staticsprites.StaticSprite;
 
 public class GameScreen extends DefaultScreen implements InputProcessor  {
 
