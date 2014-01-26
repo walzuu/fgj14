@@ -19,7 +19,7 @@ public class BaseRectDynamicObject extends BaseObject {
 		this.loadTextures("data/crate.png", "data/crate2.png");
 	}
 	
-	private void initPhysicalBody() {
+	protected void initPhysicalBody() {
 		BodyDef bodyDef = new BodyDef();
 		bodyDef.type = BodyType.DynamicBody;
 		bodyDef.position.set(position_x, position_y);

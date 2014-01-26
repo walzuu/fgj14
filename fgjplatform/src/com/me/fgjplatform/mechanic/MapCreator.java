@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.me.fgjplatform.gameobjects.BaseObject;
 import com.me.fgjplatform.gameobjects.dynamic.AlienObject;
 import com.me.fgjplatform.gameobjects.dynamic.BaseRectDynamicObject;
+import com.me.fgjplatform.gameobjects.dynamic.Box;
 import com.me.fgjplatform.gameobjects.dynamic.CreatureObject;
 import com.me.fgjplatform.gameobjects.dynamic.RobotObject;
 import com.me.fgjplatform.gameobjects.staticobjects.Door;
@@ -50,8 +51,8 @@ public class MapCreator {
 		creatureObjects.add(new AlienObject(100f, 10f + 50f, 64f, 100f,this.world));
 		creatureObjects.add(new RobotObject(400f, 10f + 25f, 50f, 50f,this.world));
 		
-		rectDynamicObjects.add(new BaseRectDynamicObject(900f, 160f, 98f, 100f,this.world));
-		rectDynamicObjects.add(new BaseRectDynamicObject(900f, 60f, 98f, 100f,this.world));
+		rectDynamicObjects.add(new Box(900f, 160f, 98f, 100f,this.world));
+		rectDynamicObjects.add(new Box(900f, 60f, 98f, 100f,this.world));
 	}
 	
 	private  void initStaticObjects() {
