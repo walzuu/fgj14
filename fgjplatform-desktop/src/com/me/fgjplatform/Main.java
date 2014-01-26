@@ -8,11 +8,11 @@ public class Main {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "fgjplatform";
 		cfg.useGL20 = false;
-//		cfg.width = 800;
-//		cfg.height = 500;
-		cfg.width = 1366;
-		cfg.height = 768;
-		cfg.fullscreen = true;
+		cfg.width = 800;
+	cfg.height = 500;
+	//	cfg.width = 1366;
+		//cfg.height = 768;
+	//	cfg.fullscreen = true;
 		cfg.vSyncEnabled = true;
 		cfg.samples = 4;
 		

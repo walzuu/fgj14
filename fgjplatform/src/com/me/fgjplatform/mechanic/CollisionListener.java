@@ -1,6 +1,7 @@
 package com.me.fgjplatform.mechanic;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
@@ -10,6 +11,8 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.me.fgjplatform.GameState;
+import com.me.fgjplatform.gameobjects.dynamic.CreatureObject;
+import com.me.fgjplatform.screens.GameScreen;
 
 public class CollisionListener implements ContactListener {
 
@@ -19,13 +22,15 @@ public class CollisionListener implements ContactListener {
 	private MapCreator mapCreator;
 	private boolean isTreeFaded;
 	private Fixture lateSensorSetting;
+	private GameScreen player;
 	
-	public CollisionListener(World world, GameState gameState, MapCreator mapCreator) {
+	public CollisionListener(World world, GameState gameState, MapCreator mapCreator, GameScreen player) {
 		this.world = world;
 		this.gameState = gameState;
 		this.mapCreator = mapCreator;
 		this.isTreeFaded = false;
 		this.lateSensorSetting = null;
+		this.player = player;
 	}
 	
 	@Override
@@ -108,14 +113,19 @@ public class CollisionListener implements ContactListener {
 	private void handleDoorCollision(Body bodyB) {
 		String userDataB = (String) bodyB.getUserData();
 		if (userDataB == "alien" || userDataB == "robot") {
+			
 			gameState.sendToGoal(userDataB.toString());
 			
 			if (userDataB == "alien") {
+				player.updateTargetPos(mapCreator.getRobot());
 				mapCreator.removeAlien();
+				
 			}
 			
 			if (userDataB == "robot") {
+				player.updateTargetPos(mapCreator.getAlien());
 				mapCreator.removeRobot();
+				
 			}
 			
 			bodyB.setUserData("out");
@@ -142,7 +152,6 @@ public class CollisionListener implements ContactListener {
 	@Override
 	public void endContact(Contact contact) {
 		try {
-			
 			Body bodyA = contact.getFixtureA().getBody();
 			Body bodyB = contact.getFixtureB().getBody();
 			Object userDataA = bodyA.getUserData();
