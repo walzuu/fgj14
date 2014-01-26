@@ -17,6 +17,7 @@ public class CreatureObject extends BaseObject {
 	private boolean moving;
 	private boolean facingLeft;
 	private boolean human;
+	private boolean robot_;
 	
 	private Animator walk_anim;
 	private Animator idle_anim;
@@ -25,7 +26,7 @@ public class CreatureObject extends BaseObject {
 	
 	public CreatureObject(float x, float y, float width, float height,World world,
 			String walkfile, int columns, int rows, int skippedrows, 
-			String idlefile, int icolumns, int irows, int iskippedrows) 
+			String idlefile, int icolumns, int irows, int iskippedrows, boolean robot) 
 	{
 		super(x, y, width, height,world);
 		initPhysicalBody();
@@ -37,6 +38,7 @@ public class CreatureObject extends BaseObject {
 		idle_anim = new Animator();
 		idle_anim.create(idlefile, icolumns, irows, iskippedrows);
 		human = true;
+		robot_ = robot;
 	}
 	
 
@@ -111,6 +113,8 @@ public class CreatureObject extends BaseObject {
 	}
 	public void transformation()
 	{
+		if(!robot_)
+		{
 		if(human)
 		{
 			walk_anim.create("data/Alien_Walking_POT.png", 4, 4, 1);
@@ -121,6 +125,22 @@ public class CreatureObject extends BaseObject {
 			walk_anim.create("data/Human_Walking_POT.png", 4, 4, 1);
 			idle_anim.create("data/Human_Idle.png",  4, 1, 0);
 		}
+		}
+		else
+		{
+			if(human)
+			{
+				walk_anim.create("data/Robot_Moving.png", 4, 1, 0);
+				idle_anim.create("data/Robot_Idle.png", 4, 1, 0);
+			}
+			else
+			{
+				walk_anim.create("data/Jelly_Walking.png", 4, 1, 0);
+				idle_anim.create("data/Jelly_Idle.png",  4, 1, 0);
+			}
+			
+		}
+		
 		
 		human = !human;
 	}
