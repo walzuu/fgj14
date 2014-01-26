@@ -113,6 +113,8 @@ public class CreatureObject extends BaseObject {
 	}
 	public void transformation()
 	{
+		facingLeft = false;
+		
 		if(!robot_)
 		{
 		if(human)
