@@ -1,7 +1,11 @@
 package com.me.fgjplatform.gameobjects.staticobjects;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Filter;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.me.fgjplatform.Global;
 
@@ -36,7 +40,21 @@ public class Tree extends StaticObject {
 	
 	@Override
 	protected void initPhysicalBody() {
-		super.initPhysicalBody();
+		bodyDef = new BodyDef();  
+        bodyDef.position.set(new Vector2(position_x,position_y));  
+        setBody(world.createBody(bodyDef));
+        
+        PolygonShape groundBox = new PolygonShape();  
+        groundBox.set(new Vector2[] { new Vector2(-width/2, height/2), new Vector2(width/2, height/2)
+        								, new Vector2(-width/2, -height/2), new Vector2(width/2, -height/2) });
+        
+        fixtureDef = new FixtureDef();  
+        fixtureDef.shape = groundBox;  
+        fixtureDef.friction = 0.0f;
+        fixtureDef.density = 0.0f;
+
+        this.fixture = getBody().createFixture(fixtureDef);
+		
 		Filter f = this.fixture.getFilterData();
 		f.maskBits = ~(Global.CATEGORY_ALIEN); // I do not collide with (alien)
 		f.categoryBits = Global.CATEGORY_TREE;  // I am 

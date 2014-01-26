@@ -9,7 +9,7 @@ public class Sky extends StaticSprite {
 	@Override
 	public void loadTextures() {
 		// TODO Auto-generated method stub
-		super.loadTextures("data/background.png", "data/background_robot.png");
+		super.loadTextures("data/bg_human.png", "data/bg_robot.png");
 	}
 
 }
