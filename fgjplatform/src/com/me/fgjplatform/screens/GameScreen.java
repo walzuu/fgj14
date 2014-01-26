@@ -1,9 +1,13 @@
 package com.me.fgjplatform.screens;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -38,6 +42,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 	static final int BOX_VELOCITY_ITERATIONS=6;  
 	static final int BOX_POSITION_ITERATIONS=2; 
 	private Vector3 targetPos;
+	private ArrayList<Music> musics;
 
 	private MapCreator mapCreator;
 
@@ -67,6 +72,20 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		// a special object
 		gameState = new GameState(world);
 		world.setContactListener(new CollisionListener(world, gameState, mapCreator));
+		
+		musics = new ArrayList<Music>();
+//		musics.add(Gdx.audio.newMusic(Gdx.files.internal("data/audio/theme_human.ogg")));
+//		musics.add(Gdx.audio.newMusic(Gdx.files.internal("data/audio/theme_robot.ogg")));
+		
+		musics.add(Gdx.audio.newMusic(Gdx.files.internal("data/audio/theme_human.mp3")));
+		musics.add(Gdx.audio.newMusic(Gdx.files.internal("data/audio/theme_robot.mp3")));
+		
+		for (int i=0; i<musics.size(); i++) {
+			musics.get(i).setLooping(true);
+		}
+		
+		musics.get(0).setVolume(1f);
+		musics.get(0).play();
 	}
 
 	@Override
@@ -79,6 +98,9 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 	public void render(float delta) {	
 		checkGameEnding();
 		updateMovement();
+		
+		Gdx.app.log("SONG",Float.toString(musics.get(0).getPosition()));
+		Gdx.app.log("VOLUME",Float.toString(musics.get(0).getVolume()));
 		//Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
@@ -193,6 +215,9 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 					for (BaseObject o: mapCreator.getStaticObjects()) {
 						o.changeTexture(0);
 					}
+					
+					musics.get(1).pause();
+					musics.get(0).play();
 				}
 			}
 			
@@ -221,6 +246,9 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 					for (BaseObject o: mapCreator.getStaticObjects()) {
 						o.changeTexture(1);
 					}
+					
+					musics.get(0).pause();
+					musics.get(1).play();
 				}
 			}
 		}
