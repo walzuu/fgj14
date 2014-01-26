@@ -131,7 +131,7 @@ public class CollisionListener implements ContactListener {
 		}
 		
 		if (userDataA == "faded_tree_robot_on" && userDataB == "robot") {
-			handleTreeFadeBack(contact.getFixtureA());
+			// handleTreeFadeBack(contact.getFixtureA()); ! - temporary bugged
 		}
 	}
 
