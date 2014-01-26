@@ -25,7 +25,7 @@ public class Tree extends StaticObject {
 		}
 		if (this.getBody() != null)
 		{
-			this.sprite.setPosition(this.getBody().getWorldCenter().x - this.sprite.getWidth()/2, 
+			this.sprite.setPosition(this.getBody().getWorldCenter().x - this.sprite.getWidth()/2,
 					this.getBody().getWorldCenter().y - this.sprite.getHeight()/2);
 			this.sprite.setRotation(this.getBody().getTransform().getRotation() / (float) Math.PI * 180);
 			this.sprite.draw(batch, alphaMod);
@@ -46,7 +46,9 @@ public class Tree extends StaticObject {
         
         PolygonShape groundBox = new PolygonShape();  
         groundBox.set(new Vector2[] { new Vector2(-width/2, height/2), new Vector2(width/2, height/2)
-        								, new Vector2(-width/2, -height/2), new Vector2(width/2, -height/2) });
+        								//, new Vector2(-width/2, 0), new Vector2(width/2, 0)
+										//, new Vector2(-width/5, 0), new Vector2(width/4, 0)
+        								, new Vector2(width/15, -height/2)});
         
         fixtureDef = new FixtureDef();  
         fixtureDef.shape = groundBox;  

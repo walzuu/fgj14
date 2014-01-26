@@ -74,11 +74,11 @@ public class MapCreator {
 
 		staticObjects.add(new Tree(200f + 100f, 110f, 100f, 200f, this.world));
 		staticObjects.add(new Tree(700f, 110f, 100f, 200f, this.world));
-		staticObjects.add(new Door(1500f + 100f, 10f + 150f, 200f, 300f, this.world));
+		staticObjects.add(new Door(1500f + 100f, 10f + 100f, 200f, 200f, this.world));
 	}
 	
 	private void initStaticSprites() {
-		staticSprites.add(new Sky(-900f, 0f, 4500f, 440f));
+		staticSprites.add(new Sky(-900f, 0f, 4500f, 800f));
 		
 		for (int i = 0; i < 45; ++i) {
 			int type = MathUtils.random(0,4);

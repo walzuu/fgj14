@@ -50,7 +50,7 @@ public class GameScreen extends DefaultScreen implements InputProcessor  {
 		camera = new OrthographicCamera();  
 		camera.viewportHeight = Global.HEIGHT;  
 		camera.viewportWidth = Global.WIDTH;    
-		camera.zoom = 1.5f;
+		camera.zoom = 1.2f;
 		
 		
 		player = mapCreator.getAlien();
