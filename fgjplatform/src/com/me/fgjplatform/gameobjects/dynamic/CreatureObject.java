@@ -16,20 +16,27 @@ public class CreatureObject extends BaseObject {
 	private boolean canJump;
 	private boolean moving;
 	private boolean facingLeft;
-	private Animator anim;
+	private boolean human;
+	
+	private Animator walk_anim;
+	private Animator idle_anim;
 	
 	protected FixtureDef fixtureSensorFeet;
 	
 	public CreatureObject(float x, float y, float width, float height,World world,
-			String walkfile, int columns, int rows, int skippedrows) 
+			String walkfile, int columns, int rows, int skippedrows, 
+			String idlefile, int icolumns, int irows, int iskippedrows) 
 	{
 		super(x, y, width, height,world);
 		initPhysicalBody();
 		canJump = true;
 		moving = false;
 		facingLeft = false;
-		anim = new Animator();
-		anim.create(walkfile, columns, rows, skippedrows);
+		walk_anim = new Animator();
+		walk_anim.create(walkfile, columns, rows, skippedrows);
+		idle_anim = new Animator();
+		idle_anim.create(idlefile, icolumns, irows, iskippedrows);
+		human = true;
 	}
 	
 
@@ -38,13 +45,15 @@ public class CreatureObject extends BaseObject {
 	{
 		if(moving)
 		{
-			anim.render(batch, (int)(this.getBody().getWorldCenter().x), 
+			walk_anim.render(batch, (int)(this.getBody().getWorldCenter().x), 
 					(int)(this.getBody().getWorldCenter().y), width, height);
 			
 		}
 		else 
 		{
-			super.draw(batch);
+			idle_anim.render(batch, (int)(this.getBody().getWorldCenter().x), 
+					(int)(this.getBody().getWorldCenter().y), width, height);
+			//super.draw(batch);
 		}
 	}
 	
@@ -52,6 +61,8 @@ public class CreatureObject extends BaseObject {
 	{
 		return getBody();
 	}
+	
+	
 	
 	protected void initPhysicalBody() {
 		bodyDef = new BodyDef();  
@@ -92,10 +103,26 @@ public class CreatureObject extends BaseObject {
 	{
 		if(left != facingLeft)
 		{
-			sprite.flip(true, false);
-			anim.flip();
+			//sprite.flip(true, false);
+			walk_anim.flip();
+			idle_anim.flip();
 		}
 		facingLeft = left;
+	}
+	public void transformation()
+	{
+		if(human)
+		{
+			walk_anim.create("data/Alien_Walking_POT.png", 4, 4, 1);
+			idle_anim.create("data/Alien_Idle.png", 4, 1, 0);
+		}
+		else
+		{
+			walk_anim.create("data/Human_Walking_POT.png", 4, 4, 1);
+			idle_anim.create("data/Human_Idle.png",  4, 1, 0);
+		}
+		
+		human = !human;
 	}
 	
 	public void jump()
