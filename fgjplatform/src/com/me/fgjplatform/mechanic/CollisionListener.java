@@ -79,7 +79,7 @@ public class CollisionListener implements ContactListener {
 	
 	private void handleTreeFadingRobotOn(Fixture fixtureTree) {
 		fixtureTree.getBody().setUserData("faded_tree_robot_on");
-		//fixtureTree.setSensor(true);
+		fixtureTree.setSensor(true);
 //		Filter filter = fixtureTree.getFilterData();
 //		filter.maskBits = ~(0x0002 | 0x0008); // I do not collide with alien and robot
 //		fixtureTree.setFilterData(filter);
@@ -87,8 +87,8 @@ public class CollisionListener implements ContactListener {
 	
 	private void handleTreeFadeBack(Fixture fixtureTree) {
 		try {
-		fixtureTree.getBody().setUserData("tree");
-		fixtureTree.setSensor(false);
+			fixtureTree.getBody().setUserData("tree");
+			fixtureTree.setSensor(false);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -153,7 +153,7 @@ public class CollisionListener implements ContactListener {
 			}
 			
 			if (userDataA == "faded_tree_robot_on" && userDataB == "robot") {
-				handleTreeFadeBack(contact.getFixtureA()); // ! - temporary bugged
+				//handleTreeFadeBack(contact.getFixtureA()); // ! - temporary bugged
 				System.out.println("handle tree fadeback");
 			}
 			
